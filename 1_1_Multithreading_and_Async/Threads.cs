@@ -124,7 +124,38 @@ namespace _1_1_Multithreading_and_Async
                 return i.Result * 2;
             });
 
+            t.ContinueWith((i) =>
+            {
+                Console.WriteLine("Faulted");
+            }, TaskContinuationOptions.OnlyOnFaulted);
+
+            var completedTask = t.ContinueWith((i) =>
+            {
+                Console.WriteLine("Completed");
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+
+            completedTask.Wait();
+
             Console.WriteLine(t.Result);
+        }
+
+        // Attaching child tasks to a parent task.
+        public static void RunChildTasks()
+        {
+            Task<Int32[]> parent = Task.Run(() =>
+            {
+                var results = new Int32[3];
+                new Task(() => results[0] = 0,
+                    TaskCreationOptions.AttachedToParent).Start();
+                new Task(() => results[1] = 1,
+                    TaskCreationOptions.AttachedToParent).Start();
+                new Task(() => results[2] = 2,
+                    TaskCreationOptions.AttachedToParent).Start();
+
+                return results;
+            });
+
+            var finalTask
         }
 
         static void Main(string[] args)
