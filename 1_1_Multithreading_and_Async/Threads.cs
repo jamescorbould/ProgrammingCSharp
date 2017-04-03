@@ -342,7 +342,11 @@ namespace _1_1_Multithreading_and_Async
 
             //PLINQTest.RunParallel();
 
-            AggException.TestAggException();
+            //AggException.TestAggException();
+
+            //ConcurrentCollectionTest.BlockingCollectionTest();
+            //ConcurrentCollectionTest.ConcurrentBagTest();
+            ConcurrentCollectionTest.ConcurrentBagIterateTest();
 
             Console.ReadKey();
         }

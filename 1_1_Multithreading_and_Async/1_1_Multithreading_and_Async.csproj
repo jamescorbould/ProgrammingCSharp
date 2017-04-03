@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggException.cs" />
+    <Compile Include="ConcurrentCollectionTest.cs" />
     <Compile Include="PLINQTest.cs" />
     <Compile Include="Threads.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
