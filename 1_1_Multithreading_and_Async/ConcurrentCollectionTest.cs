@@ -81,5 +81,28 @@ namespace _1_1_Multithreading_and_Async
                 }
             }).Wait();
         }
+
+        public static void ConcurrentStackTest()
+        {
+            ConcurrentStack<int> stack = new ConcurrentStack<int>();
+
+            stack.Push(42);
+
+            int result;
+            if (stack.TryPop(out result))
+            {
+                Console.WriteLine("Popped: {0}", result);
+            }
+
+            stack.PushRange(new int[] { 1, 2, 3});
+
+            int[] values = new int[2];
+            stack.TryPopRange(values); // Items popped from the stack will be added to the values array.
+
+            foreach (int i in values)
+            {
+                Console.WriteLine(i);
+            }
+        }
     }
 }
