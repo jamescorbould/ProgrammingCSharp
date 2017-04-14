@@ -350,7 +350,8 @@ namespace _1_1_Multithreading_and_Async
             //ConcurrentCollectionTest.ConcurrentStackTest();
             //ConcurrentCollectionTest.ConcurrentDictionaryTest();
             //Synchronization.TestLocking();
-            Synchronization.TestDeadlock();
+            //Synchronization.TestDeadlock();
+            Synchronization.TestInterlocking();
 
             Console.ReadKey();
         }
