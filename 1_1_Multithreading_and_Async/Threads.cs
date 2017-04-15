@@ -351,7 +351,10 @@ namespace _1_1_Multithreading_and_Async
             //ConcurrentCollectionTest.ConcurrentDictionaryTest();
             //Synchronization.TestLocking();
             //Synchronization.TestDeadlock();
-            Synchronization.TestInterlocking();
+            //Synchronization.TestInterlocking();
+            Synchronization.CompareAndExchangeNonAtomic();
+            Synchronization.CompareAndExchangeAtomic();
+            Synchronization.CancelTask();
 
             Console.ReadKey();
         }

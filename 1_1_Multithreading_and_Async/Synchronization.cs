@@ -9,6 +9,8 @@ namespace _1_1_Multithreading_and_Async
 {
     public static class Synchronization
     {
+        static int value = 1;
+
         public static void TestLocking()
         {
             int result = 0;
@@ -83,6 +85,71 @@ namespace _1_1_Multithreading_and_Async
 
             up.Wait();
             Console.WriteLine(n);
+        }
+
+        public static void CompareAndExchangeNonAtomic()
+        {
+            Task t1 = Task.Run(() =>
+            {
+                if (value == 1)
+                {
+                    // Removing the following line will change the output.
+                    Thread.Sleep(1000);
+                    value = 2;
+                }
+            });
+
+            Task t2 = Task.Run(() =>
+            {
+                value = 3;
+            });
+
+            Task.WaitAll(t1, t2);
+            Console.WriteLine(value);
+        }
+
+        public static void CompareAndExchangeAtomic()
+        {
+            Task t1 = Task.Run(() =>
+            {
+                if (value == 1)
+                {
+                    // Removing the following line will change the output.
+                    Thread.Sleep(1000);
+                    Interlocked.CompareExchange(ref value, 2, 1);
+                    //value = 2;
+                }
+            });
+
+            Task t2 = Task.Run(() =>
+            {
+                value = 3;
+            });
+
+            Task.WaitAll(t1, t2);
+            Console.WriteLine(value);
+        }
+
+        public static void CancelTask()
+        {
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken token = cancellationTokenSource.Token;
+
+            Task task = Task.Run(() =>
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    Console.Write("*");
+                    Thread.Sleep(1000);
+                }
+            }, token);
+
+            Console.WriteLine("Press enter to stop the task");
+            Console.ReadLine();
+            cancellationTokenSource.Cancel();
+
+            Console.WriteLine("Press enter to end the application");
+            Console.ReadLine();
         }
     }
 }
