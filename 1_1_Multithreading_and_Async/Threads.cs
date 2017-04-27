@@ -352,9 +352,14 @@ namespace _1_1_Multithreading_and_Async
             //Synchronization.TestLocking();
             //Synchronization.TestDeadlock();
             //Synchronization.TestInterlocking();
-            Synchronization.CompareAndExchangeNonAtomic();
-            Synchronization.CompareAndExchangeAtomic();
-            Synchronization.CancelTask();
+            //Synchronization.CompareAndExchangeNonAtomic();
+            //Synchronization.CompareAndExchangeAtomic();
+            //Synchronization.CancelTask();
+            //Synchronization.CancelTaskEx();
+            //Synchronization.TimeoutTask();
+            //ControlStatements.TestForEachCannotChange();
+            Event e = new Event();
+            e.TestDelegate();
 
             Console.ReadKey();
         }

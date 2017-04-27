@@ -151,5 +151,56 @@ namespace _1_1_Multithreading_and_Async
             Console.WriteLine("Press enter to end the application");
             Console.ReadLine();
         }
+
+        public static void CancelTaskEx()
+        {
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken token = cancellationTokenSource.Token;
+
+            Task task = Task.Run(() =>
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    Console.Write("*");
+                    Thread.Sleep(1000);
+                }
+
+                token.ThrowIfCancellationRequested();
+            }, token).ContinueWith((t) =>
+            {
+                t.Exception.Handle((e) => true);
+                Console.WriteLine("You have cancelled the task.");
+            }, TaskContinuationOptions.OnlyOnCanceled);
+
+            //try
+            //{
+            //    Console.WriteLine("Press enter to stop the task.");
+            //    Console.ReadLine();
+
+            //    cancellationTokenSource.Cancel();
+            //    task.Wait();
+            //}
+            //catch (AggregateException e)
+            //{
+            //    Console.WriteLine(e.InnerExceptions[0].Message);
+            //}
+            Console.WriteLine("Press enter to end the application");
+            Console.ReadLine();
+        }
+
+        public static void TimeoutTask()
+        {
+            Task longRunning = Task.Run(() =>
+            {
+                Thread.Sleep(10000);
+            });
+
+            int index = Task.WaitAny(new[] { longRunning }, 1000);  // Wait on an array of inline tasks for 1 sec.
+
+            if (index == -1)
+            {
+                Console.WriteLine("Task timed out ");
+            }
+        }
     }
 }
