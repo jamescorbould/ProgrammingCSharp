@@ -359,7 +359,9 @@ namespace _1_1_Multithreading_and_Async
             //Synchronization.TimeoutTask();
             //ControlStatements.TestForEachCannotChange();
             Event e = new Event();
-            e.TestDelegate();
+            //e.TestDelegate();
+            e.MulticastDelegate();
+
 
             Console.ReadKey();
         }
