@@ -360,8 +360,15 @@ namespace _1_1_Multithreading_and_Async
             //ControlStatements.TestForEachCannotChange();
             Event e = new Event();
             //e.TestDelegate();
-            e.MulticastDelegate();
-
+            //e.MulticastDelegate();
+            //Lambda.TestLambda();
+            //Lambda.MultipleStatementsLambda();
+            //Lambda.BuiltInDelegates();
+            //e.CreateAndRaise();
+            //e.CreateAndRaise3();
+            //e.CreateAndRaise4();
+            //e.CreateAndRaise5();
+            Exceptions.Throw();
 
             Console.ReadKey();
         }
