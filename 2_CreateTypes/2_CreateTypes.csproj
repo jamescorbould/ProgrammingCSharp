@@ -1,14 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B9F8260A-DD37-4424-AF8C-6BFA6AA55B45}</ProjectGuid>
+    <ProjectGuid>{47DFE784-2F83-4D34-9C46-5E211F0D0417}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_1_1_Multithreading_and_Async</RootNamespace>
-    <AssemblyName>1_1_Multithreading_and_Async</AssemblyName>
+    <RootNamespace>_2_CreateTypes</RootNamespace>
+    <AssemblyName>2_CreateTypes</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,27 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AggException.cs" />
-    <Compile Include="ConcurrentCollectionTest.cs" />
-    <Compile Include="ControlStatements.cs" />
-    <Compile Include="Event.cs" />
-    <Compile Include="Exceptions.cs" />
-    <Compile Include="Lambda.cs" />
-    <Compile Include="OrderProcessingException.cs" />
-    <Compile Include="PLINQTest.cs" />
-    <Compile Include="Synchronization.cs" />
-    <Compile Include="Threads.cs" />
+    <Compile Include="Extension.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

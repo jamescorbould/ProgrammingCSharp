@@ -368,7 +368,8 @@ namespace _1_1_Multithreading_and_Async
             //e.CreateAndRaise3();
             //e.CreateAndRaise4();
             //e.CreateAndRaise5();
-            Exceptions.Throw();
+            //Exceptions.Throw();
+            Exceptions.Throw2();
 
             Console.ReadKey();
         }

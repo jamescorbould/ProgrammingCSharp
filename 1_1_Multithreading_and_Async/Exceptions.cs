@@ -28,5 +28,22 @@ namespace _1_1_Multithreading_and_Async
                 possibleException.Throw();
             }
         }
+
+        public static void Throw2()
+        {
+            try
+            {
+                throw new OrderProcessingException(3);
+            }
+            catch (OrderProcessingException ex)
+            {
+                possibleException = ExceptionDispatchInfo.Capture(ex);
+            }
+
+            if (possibleException != null)
+            {
+                possibleException.Throw();
+            }
+        }
     }
 }
