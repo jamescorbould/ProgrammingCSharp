@@ -25,6 +25,12 @@ namespace _2_CreateTypes
             Console.WriteLine(d.MyMethod());
             Console.WriteLine(d2.MyMethod());
 
+            Money m = new Money(42.42M);
+            decimal amount = m;  // Implicit conversion.
+            Console.WriteLine(amount);
+            int truncatedAmount = (int)m;  // Explicit conversion (casting).
+            Console.WriteLine(truncatedAmount);
+
             Console.ReadKey();
         }
     }
