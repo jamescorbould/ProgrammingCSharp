@@ -31,26 +31,28 @@ namespace _2_CreateTypes
             //int truncatedAmount = (int)m;  // Explicit conversion (casting).
             //Console.WriteLine(truncatedAmount);
 
-            List<Order> orders = new List<Order>
-            {
-                new Order { Created = new DateTime(2016, 6, 19) },
-                new Order { Created = new DateTime(2014, 6, 19) },
-                new Order { Created = new DateTime(2017, 6, 19) },
-                new Order { Created = new DateTime(2011, 6, 19) }
-            };
+            //List<Order> orders = new List<Order>
+            //{
+            //    new Order { Created = new DateTime(2016, 6, 19) },
+            //    new Order { Created = new DateTime(2014, 6, 19) },
+            //    new Order { Created = new DateTime(2017, 6, 19) },
+            //    new Order { Created = new DateTime(2011, 6, 19) }
+            //};
 
-            foreach (Order o in orders)
-            {
-                Console.WriteLine(o.Created.ToString());
-            }
+            //foreach (Order o in orders)
+            //{
+            //    Console.WriteLine(o.Created.ToString());
+            //}
 
-            orders.Sort();
-            Console.WriteLine();
+            //orders.Sort();
+            //Console.WriteLine();
 
-            foreach (Order o in orders)
-            {
-                Console.WriteLine(o.Created.ToString());
-            }
+            //foreach (Order o in orders)
+            //{
+            //    Console.WriteLine(o.Created.ToString());
+            //}
+
+            Reflection.OutputSomeCodeUsingReflection();
 
             Console.ReadKey();
         }
