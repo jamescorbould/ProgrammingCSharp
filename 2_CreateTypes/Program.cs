@@ -52,7 +52,9 @@ namespace _2_CreateTypes
             //    Console.WriteLine(o.Created.ToString());
             //}
 
-            Reflection.OutputSomeCodeUsingReflection();
+            //Reflection.OutputSomeCodeUsingReflection();
+
+            Reflection.Funcky();
 
             Console.ReadKey();
         }
