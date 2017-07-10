@@ -10,7 +10,8 @@ namespace _3_DebugApps_And_Implement_Security
             //testDebug();
             //testTrace();
             //PerfCounters();
-            IncrementCustomCounters();
+            //IncrementCustomCounters();
+            Stream.FilestreamTest();
             Console.ReadKey();
         }
         public static void TestDebug()
@@ -66,23 +67,27 @@ namespace _3_DebugApps_And_Implement_Security
             }
 
             var totalOperationsCounter = new PerformanceCounter(
-                "MyCategory",
+                "JCCategory",
                 "# operations executed",
                 "",
                 false);
             var operationsPerSecondCounter = new PerformanceCounter(
-                "MyCategory",
+                "JCCategory",
                 "# operations / sec",
                 "",
                 false);
 
-            totalOperationsCounter.Increment();
-            operationsPerSecondCounter.Increment();
+            do
+            {
+                totalOperationsCounter.Increment();
+                operationsPerSecondCounter.Increment();
+            }
+            while (1 == 1);
         }
 
         public static bool CreatePerfCounters()
         {
-            if (!PerformanceCounterCategory.Exists("MyCategory"))
+            if (!PerformanceCounterCategory.Exists("JCCategory"))
             {
                 CounterCreationDataCollection counters = new CounterCreationDataCollection
                 {
@@ -96,7 +101,7 @@ namespace _3_DebugApps_And_Implement_Security
                         PerformanceCounterType.RateOfCountsPerSecond32)
                 };
 
-                PerformanceCounterCategory.Create("MyCategory", "MyCategoryHelp", PerformanceCounterCategoryType.SingleInstance, counters);
+                PerformanceCounterCategory.Create("JCCategory", "JCCategoryHelp", PerformanceCounterCategoryType.SingleInstance, counters);
 
                 return true;
             }

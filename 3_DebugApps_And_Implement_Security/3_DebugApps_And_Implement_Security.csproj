@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DebugAndTrace.cs" />
+    <Compile Include="Stream.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
