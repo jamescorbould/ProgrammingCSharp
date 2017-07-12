@@ -11,7 +11,12 @@ namespace _3_DebugApps_And_Implement_Security
             //testTrace();
             //PerfCounters();
             //IncrementCustomCounters();
-            Stream.FilestreamTest();
+            //Stream.FilestreamTest();
+            Stream.StreamWriterTest();
+            Stream.ReadFileStream();
+            Stream.ReadFileStreamStreamReader();
+            Stream.DecoratorPatternStreams();
+            Stream.TestWebRequest();
             Console.ReadKey();
         }
         public static void TestDebug()
