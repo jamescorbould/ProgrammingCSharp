@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -102,6 +104,60 @@ namespace _3_DebugApps_And_Implement_Security
             Console.WriteLine(responseText);
 
             resp.Close();
+        }
+
+        public async static void CreateAndWriteAsyncToFile()
+        {
+            using (FileStream fs = new FileStream("test.dat", FileMode.Create, FileAccess.Write, FileShare.None, 4096, true))
+            {
+                byte[] data = new byte[100000];
+                new Random().NextBytes(data);
+
+                await fs.WriteAsync(data, 0, data.Length);
+            }
+        }
+
+        public async static void TestHttpRequestAsync()
+        {
+            HttpClient client = new HttpClient();
+            string result = await client.GetStringAsync("http://www.datacom.co.nz");
+        }
+
+        public async static void SequentialCalls()
+        {
+            HttpClient client = new HttpClient();
+
+            // The Tasks below will run sequentiallly (t = 3t);
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+            string microsoft = await client.GetStringAsync("http://www.microsoft.com");
+            Console.WriteLine("First task completed");
+            string datacom = await client.GetStringAsync("http://www.datacom.co.nz");
+            Console.WriteLine("Second task completed");
+            string dd = await client.GetStringAsync("http://www.dimensiondata.com");
+            Console.WriteLine("Third task completed");
+            sw.Stop();
+            Console.WriteLine("*** Elapsed time sequential = {0} ms ***", sw.ElapsedMilliseconds);
+        }
+
+        public async static void ParallelCalls()
+        {
+            HttpClient client = new HttpClient();
+
+            // The Tasks below will run sequentiallly (t = t/3);
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+            Task microsoft = client.GetStringAsync("http://www.microsoft.com");
+            Console.WriteLine("First parallel task start");
+            Task datacom = client.GetStringAsync("http://www.datacom.co.nz");
+            Console.WriteLine("Second parallel task start");
+            Task dd = client.GetStringAsync("http://www.dimensiondata.com");
+            Console.WriteLine("Third parallel task start");
+            await Task.WhenAll(microsoft, datacom, dd);
+            sw.Stop();
+            Console.WriteLine("*** Elapsed time parallel = {0} ms ***", sw.ElapsedMilliseconds);
         }
     }
 }
