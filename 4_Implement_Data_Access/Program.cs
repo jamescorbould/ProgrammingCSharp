@@ -7,6 +7,8 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Xml;
 
 namespace _4_Implement_Data_Access
 {
@@ -18,7 +20,9 @@ namespace _4_Implement_Data_Access
             //Task t = SelectMultipleFromTable();
             //Task t = UpdateRows();
             //Task t = UpdateRowsWithParameters("MERCURY");
-            Task t = TestTransactions();
+            //Task t = TestTransactions();
+            TestXMLReader();
+            TestXMLWriterCreateFile();
             Console.ReadKey();
         }
 
@@ -128,6 +132,62 @@ namespace _4_Implement_Data_Access
                 }
                 tscope.Complete();
             }
+        }
+
+        public static void TestXMLReader()
+        {
+            string xml =@"<?xml version=""1.0"" encoding=""utf-8""?>
+                            <people>
+                                <person firstname=""john"" lastname=""doe"">
+                                    <contactdetails>
+                                        <emailaddress>john@unknown.com</emailaddress>
+                                    </contactdetails>
+                                </person>
+                                <person firstname=""jane"" lastname=""doe"">
+                                    <contactdetails>
+                                        <emailaddress>jane@unknown.com</emailaddress>
+                                        <phonenumber>001122334455</phonenumber>
+                                    </contactdetails>
+                                </person>
+                            </people>";
+
+            using (StringReader stringReader = new StringReader(xml))
+            {
+                using (XmlReader xmlReader = XmlReader.Create(stringReader, new XmlReaderSettings() { IgnoreWhitespace = true }))
+                {
+                    xmlReader.MoveToContent();
+                    xmlReader.ReadStartElement("people");
+                    string firstName = xmlReader.GetAttribute("firstName");
+                    string lastName = xmlReader.GetAttribute("lastName");
+                    Console.WriteLine("Person: {0} {1}", firstName, lastName);
+                    xmlReader.ReadStartElement("person");
+                    Console.WriteLine("Contact Details");
+                    xmlReader.ReadStartElement("contactdetails");
+                    string emailAddress = xmlReader.ReadString();
+                    Console.WriteLine("Email address: {0}", emailAddress);
+                }
+            }
+        }
+
+        public static void TestXMLWriterCreateFile()
+        {
+            StringWriter stream = new StringWriter();
+
+            using (XmlWriter writer = XmlWriter.Create(stream, new XmlWriterSettings() { Indent = true }))
+            {
+                writer.WriteStartDocument();
+                writer.WriteStartElement("People");
+                writer.WriteStartElement("Person");
+                writer.WriteAttributeString("firstName", "John");
+                writer.WriteAttributeString("lastName", "Doe");
+                writer.WriteStartElement("ContactDetails");
+                writer.WriteElementString("EmailAddress", "john@unknown.com");
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+                writer.Flush();
+            }
+
+            Console.WriteLine(stream.ToString());
         }
     }
 }
