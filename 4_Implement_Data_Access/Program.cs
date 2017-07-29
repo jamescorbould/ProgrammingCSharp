@@ -25,7 +25,10 @@ namespace _4_Implement_Data_Access
             //TestXMLReader();
             //TestXMLWriterCreateFile();
             //TestXMLDoc();
-            TestXPath();
+            //TestXPath();
+            //LinqSelectTest();
+            //LinqJoinTest();
+            LinqOrders();
             Console.ReadKey();
         }
 
@@ -265,6 +268,136 @@ namespace _4_Implement_Data_Access
                 string lastName = iterator.Current.GetAttribute("lastname","");
                 Console.WriteLine("Name: {0} {1}", firstName, lastName);
             }
+        }
+
+        public static void LinqSelectTest()
+        {
+            int[] data = { 1, 2, 3, 5, 8, 13 };
+
+            // Query syntax.
+            var result = from d in data
+                         where d > 5
+                         select d;
+
+            Console.WriteLine(string.Join(", ", result));
+
+            // Method syntax.
+            result = data.Where(x => x > 5);
+
+            Console.WriteLine(string.Join(", ", result));
+        }
+
+        public static void LinqJoinTest()
+        {
+            int[] data1 = { 1, 2, 3, 5, 8, 13 };
+            int[] data2 = { 2, 4, 6, 8, 10, 12 };
+
+            var result = from d1 in data1
+                         from d2 in data2
+                         select d1 * d2;
+
+            Console.WriteLine(string.Join(", ", result));
+        }
+
+        public class Product
+        {
+            public string Description { get; set; }
+            public decimal Price { get; set; }
+        }
+
+        public class OrderLine
+        {
+            public int Amount { get; set; }
+            public Product Product { get; set; }
+        }
+
+        public class Order
+        {
+            public List<OrderLine> OrderLines { get; set; }
+        }
+
+        public static void LinqOrders()
+        {
+            var products = new List<Product>
+            {
+                new Product
+                {
+                    Description = "Widget",
+                    Price = 1.00M
+                },
+                new Product
+                {
+                    Description = "Widget2",
+                    Price = 2.00M
+                }
+            };
+
+            var orders = new List<Order>
+            {
+                new Order
+                {
+                    OrderLines = new List<OrderLine>
+                    {
+                        new OrderLine
+                        {
+                            Amount = 5,
+                            Product = products[0]
+                        },
+                        new OrderLine
+                        {
+                            Amount = 3,
+                            Product = products[1]
+                        }
+                    }
+                },
+                new Order
+                {
+                    OrderLines = new List<OrderLine>
+                    {
+                        new OrderLine
+                        {
+                            Amount = 5,
+                            Product = products[0]
+                        },
+                        new OrderLine
+                        {
+                            Amount = 3,
+                            Product = products[1]
+                        },
+                        new OrderLine
+                        {
+                            Amount = 2,
+                            Product = products[0]
+                        },
+                        new OrderLine
+                        {
+                            Amount = 15,
+                            Product = products[1]
+                        }
+                    }
+                }
+            };
+
+            Console.WriteLine("Average no. of order lines per order = {0}", orders.Average(o => o.OrderLines.Count));  // Method syntax, no query syntax available.
+
+            // Example of projection - select another type or anon. type as the result of your query.
+            var result = from o in orders
+                         from l in o.OrderLines
+                         group l by l.Product into p
+                         select new
+                         {
+                             Product = p.Key,
+                             Amount = p.Sum(x => x.Amount)
+                         };
+
+            var list = result.ToList();
+            Console.WriteLine("Sum of product {0} = {1}", result.First().Product.Description, result.First().Amount);
+
+            foreach (var p in result)
+            {
+                Console.WriteLine("Sum of product {0} = {1}", p.Product.Description, p.Amount);
+            }
+            
         }
     }
 }
