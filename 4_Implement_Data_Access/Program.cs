@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Xml;
 using System.Xml.XPath;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace _4_Implement_Data_Access
 {
@@ -28,7 +32,10 @@ namespace _4_Implement_Data_Access
             //TestXPath();
             //LinqSelectTest();
             //LinqJoinTest();
-            LinqOrders();
+            //LinqOrders();
+            //LinqToXMLTest();
+            //SerlializeOrder();
+            SerializeBinary();
             Console.ReadKey();
         }
 
@@ -142,7 +149,7 @@ namespace _4_Implement_Data_Access
 
         public static void TestXMLReader()
         {
-            string xml =@"<?xml version=""1.0"" encoding=""utf-8""?>
+            string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
                             <people>
                                 <person firstname=""john"" lastname=""doe"">
                                     <contactdetails>
@@ -264,8 +271,8 @@ namespace _4_Implement_Data_Access
 
             while (iterator.MoveNext())
             {
-                string firstName = iterator.Current.GetAttribute("firstname","");
-                string lastName = iterator.Current.GetAttribute("lastname","");
+                string firstName = iterator.Current.GetAttribute("firstname", "");
+                string lastName = iterator.Current.GetAttribute("lastname", "");
                 Console.WriteLine("Name: {0} {1}", firstName, lastName);
             }
         }
@@ -397,7 +404,112 @@ namespace _4_Implement_Data_Access
             {
                 Console.WriteLine("Sum of product {0} = {1}", p.Product.Description, p.Amount);
             }
-            
+        }
+
+        public static void LinqToXMLTest()
+        {
+            string xml = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
+                        <people>
+                            <person firstname=""john"" lastname=""doe"">
+                                <contactdetails>
+                                    <emailaddress>john@unknown.com</emailaddress>
+                                </contactdetails>
+                            </person>
+                            <person firstname=""jane"" lastname=""doe"">
+                                <contactdetails>
+                                    <emailaddress>jane@unknown.com</emailaddress>
+                                    <phonenumber>001122334455</phonenumber>
+                                </contactdetails>
+                            </person>
+                            <person firstname=""freddy"" lastname=""doe"">
+                                <contactdetails>
+                                    <emailaddress>jane@unknown.com</emailaddress>
+                                    <phonenumber>001122334455</phonenumber>
+                                </contactdetails>
+                            </person>
+                        </people>";
+
+            XDocument doc = XDocument.Parse(xml);
+            IEnumerable<string> personNames = from p in doc.Descendants("person")
+                                              where p.Descendants("contactdetails").Descendants("phonenumber").Any()
+                                              let name = (string)p.Attribute("firstname")
+                                              + " " + (string)p.Attribute("lastname")
+                                              orderby name
+                                              select name;
+
+            foreach (string n in personNames)
+            {
+                Console.WriteLine("Name = {0}", n.ToString());
+            }
+        }
+
+        private static OrderS CreateOrder()
+        {
+            ProductS p1 = new ProductS { ID = 1, Description = "p2", Price = 9 };
+            ProductS p2 = new ProductS { ID = 2, Description = "p3", Price = 6 };
+
+            OrderS order = new VIPOrder
+            {
+                ID = 4,
+                Description = "Order for John Doe. Use the nice giftwrap",
+
+                OrderLines = new List<OrderLineS>
+                {
+                    new OrderLineS { ID = 5, Amount = 1, Product = p1},
+                    new OrderLineS { ID = 6 ,Amount = 10, Product = p2},
+                }
+            };
+
+            return order;
+        }
+
+        private static void SerlializeOrder()
+        {
+            Console.WriteLine("Serlialize Order");
+            XmlSerializer serializer = new XmlSerializer(typeof(OrderS), new Type[] { typeof(VIPOrder) });
+            string xml;
+            string xmlFilePath = @"C:\temp\Order.xml";
+
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                OrderS order = CreateOrder();
+                serializer.Serialize(stringWriter, order);
+                xml = stringWriter.ToString();
+            }
+
+            using (StringReader stringReader = new StringReader(xml))
+            {
+                OrderS o = (OrderS)serializer.Deserialize(stringReader);
+
+                // Use the order.
+                using (StreamWriter sw = File.CreateText(xmlFilePath))
+                {
+                    sw.WriteLine(xml);
+                }
+            }
+        }
+
+        private static void SerializeBinary()
+        {
+            Person p = new Person
+            {
+                Age = 40,
+                FirstName = "Corbs",
+                LastName = "Corby"
+            };
+
+            IFormatter formatter = new BinaryFormatter();
+
+            using (Stream stream = new FileStream(@"C:\temp\data.bin", FileMode.Create))
+            {
+                formatter.Serialize(stream, p);
+            }
+
+            using (Stream stream = new FileStream(@"C:\temp\data.bin", FileMode.Open))
+            {
+                Person dp = (Person)formatter.Deserialize(stream);
+                Console.WriteLine("Person name = {0} {1}", dp.FirstName, dp.LastName);
+            }
         }
     }
 }
