@@ -41,7 +41,7 @@ namespace _4_Implement_Data_Access
         }
     }
 
-    // Example of implementing ISerializable to have greater control over the serialization process of the object.
+    // Example of implementing ISerializable to have greater control over the serialization of the object by using the SerializationInfo object.
     [Serializable]
     public class PersonComplex : ISerializable
     {
@@ -52,6 +52,10 @@ namespace _4_Implement_Data_Access
 
         protected PersonComplex(SerializationInfo info, StreamingContext context)
         {
+            // Constructor is called during deserialization.
+            Console.WriteLine("Deserializing - constructor called - reading data *from* SerializationInfo object.");
+            // Security checks here.
+
             Id = info.GetInt32("Value1");
             Name = info.GetString("Value2");
             isDirty = info.GetBoolean("Value3");
@@ -60,6 +64,8 @@ namespace _4_Implement_Data_Access
         [System.Security.Permissions.SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
+            // Called during serialization.
+            Console.WriteLine("Serializing - loading data *into* SerializationInfo object.");
             info.AddValue("Value1", Id);
             info.AddValue("Value2", Name);
             info.AddValue("Value3", isDirty);
