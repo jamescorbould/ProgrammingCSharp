@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1_1_Multithreading_and_Async", "1_1_Multithreading_and_Async\1_1_Multithreading_and_Async.csproj", "{B9F8260A-DD37-4424-AF8C-6BFA6AA55B45}"
 EndProject
@@ -14,6 +14,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4_Implement_Data_Access", "4_Implement_Data_Access\4_Implement_Data_Access.csproj", "{7D4E5A8D-A518-4276-9280-44B8044CF9EA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5_ExamQuestionsTest", "5_ExamQuestionsTest\5_ExamQuestionsTest.csproj", "{DAF65484-3204-4BE8-BD64-362700840DCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFService", "WCFService\WCFService.csproj", "{C0F9FE79-E8B6-48ED-B0DA-FE5D79E6DC9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFProxy", "WCFProxy\WCFProxy.csproj", "{B0A17991-1F00-4B60-9E96-8C4C6B51F69A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,8 +49,19 @@ Global
 		{DAF65484-3204-4BE8-BD64-362700840DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAF65484-3204-4BE8-BD64-362700840DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAF65484-3204-4BE8-BD64-362700840DCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0F9FE79-E8B6-48ED-B0DA-FE5D79E6DC9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0F9FE79-E8B6-48ED-B0DA-FE5D79E6DC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0F9FE79-E8B6-48ED-B0DA-FE5D79E6DC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0F9FE79-E8B6-48ED-B0DA-FE5D79E6DC9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0A17991-1F00-4B60-9E96-8C4C6B51F69A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0A17991-1F00-4B60-9E96-8C4C6B51F69A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0A17991-1F00-4B60-9E96-8C4C6B51F69A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0A17991-1F00-4B60-9E96-8C4C6B51F69A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B4988B6-5EC7-46C2-B9B4-7F2987A26B1F}
 	EndGlobalSection
 EndGlobal

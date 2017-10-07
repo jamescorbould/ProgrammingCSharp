@@ -10,14 +10,102 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.CodeDom;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace _5_ExamQuestionsTest
 {
     partial class Program
     {
         enum Days { Mon = 1, Tue, Wed, Thur, Fri, Sat, Sun };
+
+        [Flags]
+        enum Days2
+        {
+            None = 0x0,
+            Sunday = 0x1,
+            Monday = 0x2,
+            Tuesday = 0x4,
+            Wednesday = 0x8,
+            Thursday = 0x10,
+            Friday = 0x20,
+            Saturday = 0x40
+        }
+
+        public enum Planet
+        {
+            Mercury,
+            Venus,
+            Earth
+        }
+
+        public static class SolarSystem
+        {
+            public static IEnumerable<Planet> PlanetsByDistanceFromSun
+            {
+                get
+                {
+                    yield return Planet.Mercury;  // Can return each element one at a time.
+                    yield return Planet.Venus;
+                    yield return Planet.Earth;
+                }
+            }
+        }
+
+        [DataContract]
+        internal class Person2
+        {
+            [DataMember]
+            internal string name;
+
+            [DataMember]
+            internal int age;
+        }
+
+        public static void SerializeToJSON()
+        {
+            Person2 p = new Person2();
+            p.name = "James";
+            p.age = 40;
+
+            MemoryStream stream1 = new MemoryStream();
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Person2));
+
+            ser.WriteObject(stream1, p); // Serlializes the object to a JSON message.
+
+            stream1.Position = 0;
+            StreamReader sr = new StreamReader(stream1);
+            Console.Write("JSON form of Person2 object: ");
+            Console.WriteLine(sr.ReadToEnd());
+        }
+
+        public static Person2 DeserializeJSONToObject(string json)
+        {
+            Person2 p2 = new Person2();
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(p2.GetType());
+            p2 = ser.ReadObject(ms) as Person2;
+            ms.Close();
+            return p2;
+        }
+
         static void Main(string[] args)
         {
+            foreach (Planet p in SolarSystem.PlanetsByDistanceFromSun)
+            {
+                Console.WriteLine("Planet = {0}", p);
+            }
+
+            SerializeToJSON();
+            Person2 p2 = DeserializeJSONToObject("{\"name\": \"Bob\", \"age\": 19}");
+            Console.WriteLine("name = {0}, age = {1}", p2.name, p2.age);
+                
+            //var graph = BuildHelloWorldGraph.BuildGraph();
+            //string sourceFile = BuildHelloWorldGraph.GenerateCSharpCode(graph);
+            //bool success = BuildHelloWorldGraph.CompileCSharpCode(sourceFile, @".\HelloWorld.exe");
+
+            //TryFlags();
+
             //ch03();
             //optional(lastname: "Corbs", age: 40);
 
@@ -30,7 +118,7 @@ namespace _5_ExamQuestionsTest
             //Employee bob = new Person();
             //Manager cindy = new Employee();
             //Manager dan = (Manager)(new Employee());
-            
+
             //Console.WriteLine(Convert.ChangeType(3.14F, TypeCode.Int32));
 
             //BitConverter.ToInt16()
@@ -42,16 +130,16 @@ namespace _5_ExamQuestionsTest
             //Console.WriteLine(DateTime.Now.ToString("d"));
             //Console.WriteLine(DateTime.Now.ToShortDateString());
 
-            Console.WriteLine(Calc.Add(50, 50));
+            //Console.WriteLine(Calc.Add(50, 50));
             //Console.WriteLine(Calc.ShowNote("Hi"));
-            BackgroundWorker worker = new BackgroundWorker();
+            //BackgroundWorker worker = new BackgroundWorker();
             //Monitor mon = new Monitor();
-            int value = 5, value2 = 5;
-            Console.Write(Interlocked.Add(ref value, value2));
+            //int value = 5, value2 = 5;
+            //Console.Write(Interlocked.Add(ref value, value2));
 
-            GetRefAssemblies();
-            string hello = "hello world";
-            GetType(hello);
+            //GetRefAssemblies();
+            //string hello = "hello world";
+            //GetType(hello);
 
             Console.ReadKey();
         }
@@ -230,6 +318,17 @@ namespace _5_ExamQuestionsTest
         public static void TestFile()
         {
             
+        }
+
+        public static void TryFlags()
+        {
+            Days2 readingDays = Days2.Monday | Days2.Saturday;
+            Console.WriteLine(readingDays);
+        }
+
+        public static void TryYield()
+        {
+
         }
     }
 
