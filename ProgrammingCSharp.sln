@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFService", "WCFService\WC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFProxy", "WCFProxy\WCFProxy.csproj", "{B0A17991-1F00-4B60-9E96-8C4C6B51F69A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serialization", "Serialization\Serialization.csproj", "{742AC9E9-6E9C-4208-9BFD-88823911FE74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indexers", "Indexers\Indexers.csproj", "{8CA52DA4-D90F-4165-AAB7-AB47CBA1780F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,14 @@ Global
 		{B0A17991-1F00-4B60-9E96-8C4C6B51F69A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0A17991-1F00-4B60-9E96-8C4C6B51F69A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0A17991-1F00-4B60-9E96-8C4C6B51F69A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{742AC9E9-6E9C-4208-9BFD-88823911FE74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{742AC9E9-6E9C-4208-9BFD-88823911FE74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{742AC9E9-6E9C-4208-9BFD-88823911FE74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{742AC9E9-6E9C-4208-9BFD-88823911FE74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CA52DA4-D90F-4165-AAB7-AB47CBA1780F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CA52DA4-D90F-4165-AAB7-AB47CBA1780F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CA52DA4-D90F-4165-AAB7-AB47CBA1780F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA52DA4-D90F-4165-AAB7-AB47CBA1780F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

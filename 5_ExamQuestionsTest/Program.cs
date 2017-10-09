@@ -153,6 +153,12 @@ namespace _5_ExamQuestionsTest
             Man man = new Man("James", "Corbs", 40);
             Console.WriteLine("Man speaks: \"{0}\"", man.saysomething());
 
+            Man man2 = new Man(firstName: "Bob", lastName: "Smith", age: 11);
+
+            // Named args must appear *after* all fixed non-named args.
+            // e.g. the below will generate a compile time error:
+            //Man man3 = new Man(firstName: "Bob", "Smith", age: 11); // named args must appear after non-named args.
+
             Console.WriteLine("Days.Mon = {0}", (int)Days.Mon);
             Console.WriteLine("Days.Tue = {0}", (int)Days.Tue);
             Console.WriteLine("Days.Wed = {0}", (int)Days.Wed);

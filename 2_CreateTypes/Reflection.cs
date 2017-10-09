@@ -43,7 +43,7 @@ namespace _2_CreateTypes
 
         public static void Funcky()
         {
-            Func<int, int, int> addFunc = (x, y) => x + y;
+            Func<int, int, int> addFunc = (x, y) => x + y; // Inline function.
             Console.WriteLine(addFunc(2, 3));
         }
     }
