@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Book.cs" />
+    <Compile Include="DeveloperAttribute.cs" />
+    <Compile Include="Digit.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="Interfaces.cs" />
     <Compile Include="Program.cs" />

@@ -54,7 +54,15 @@ namespace _2_CreateTypes
 
             //Reflection.OutputSomeCodeUsingReflection();
 
-            Reflection.Funcky();
+            //Reflection.Funcky();
+
+
+            DigitType d = new DigitType(4);
+            byte b = d;  // implicit conversion -- no cast needed.
+
+            Console.WriteLine(d);
+
+            Console.WriteLine(b);
 
             Console.ReadKey();
         }
