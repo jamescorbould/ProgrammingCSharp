@@ -58,12 +58,12 @@ namespace _2_CreateTypes
             Amount = amount;
         }
 
-        public static implicit operator decimal(Money money)
+        public static implicit operator decimal(Money money) // no cast required.
         {
             return money.Amount;
         }
 
-        public static explicit operator int(Money money)
+        public static explicit operator int(Money money) // cast required.
         {
             return (int)money.Amount;
         }
