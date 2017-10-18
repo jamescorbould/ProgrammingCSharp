@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _2_CreateTypes
 {
-    [AttributeUsage(AttributeTargets.All)]
+    [AttributeUsage(AttributeTargets.All)] // Use AttributeUsageAttribute to specify how the attribute should be used.
     public class DeveloperAttribute : Attribute
     {
         // Private fields.

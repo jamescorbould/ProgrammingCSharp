@@ -57,12 +57,29 @@ namespace _2_CreateTypes
             //Reflection.Funcky();
 
 
-            DigitType d = new DigitType(4);
-            byte b = d;  // implicit conversion -- no cast needed.
+            //DigitType d = new DigitType(4);
+            //byte b = d;  // implicit conversion -- no cast needed.
 
-            Console.WriteLine(d);
+            //Console.WriteLine(d);
 
-            Console.WriteLine(b);
+            //Console.WriteLine(b);
+
+            //Car car1 = new Car(make: "Honda", model: "Odyessey", year: "2005");
+            //Car car2 = new Car(make: "Honda", model: "Odyessey", year: "2005");
+            //Car car3 = new Car(make: "Toyota", model: "Corolla", year: "2005");
+
+            //Console.WriteLine("car1 == car2 => {0}", car1.Equals(car2));
+            //Console.WriteLine("car2 == car3 => {0}", car2.Equals(car3));
+
+            //Console.Write(DelegateTest.test("hello", "world"));
+
+            //ThreadTest.Test();
+
+            //Book book = new Book("The Hobbit");
+
+            string s = "James Corbould";
+            Console.WriteLine("string '{0}' wordcount = {1}", s, s.WordCount());  // Call extension method on string.
+
 
             Console.ReadKey();
         }

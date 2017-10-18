@@ -26,4 +26,34 @@ namespace _2_CreateTypes
             return this.Created.CompareTo(o.Created);
         }
     }
+
+    /// <summary>
+    /// Example class that implements IEquatable interface to determine if two instances are equal.
+    /// </summary>
+    public class Car : IEquatable<Car>
+    {
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public string Year { get; set; }
+
+        public Car(string make, string model, string year)
+        {
+            this.Make = make;
+            this.Model = model;
+            this.Year = year;
+        }
+
+        // Implementation of IEquatable<T> interface
+        public bool Equals(Car car)
+        {
+            if (this.Make == car.Make &&
+                this.Model == car.Model &&
+                this.Year == car.Year)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+    }
 }

@@ -31,7 +31,7 @@ namespace _2_CreateTypes
             myClass.Members.Add(start);
             start.Statements.Add(csl);
 
-            CSharpCodeProvider provider = new CSharpCodeProvider();
+            CSharpCodeProvider provider = new CSharpCodeProvider();  // Could call a different code provider to output code for diff language.
 
             using (StreamWriter sw = new StreamWriter("HelloWorld.cs", false))
             {

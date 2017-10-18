@@ -7,9 +7,9 @@ namespace _2_CreateTypes
         public decimal Price { get; set; }
     }
 
-    public static class MyExtensions
+    public static class MyExtensions  // Static class.
     {
-        public static decimal Discount(this Product product)
+        public static decimal Discount(this Product product)  // Static method.  Use of this keyword in method parameter.
         {
             return product.Price * 0.9M;
         }
@@ -68,4 +68,13 @@ namespace _2_CreateTypes
             return (int)money.Amount;
         }
     }
+
+        // Class for extension methods.
+        public static class MyExtensions2  // Static class.
+        {
+            public static int WordCount(this String str)  // Static method.  Use of this keyword in parameter.
+            {
+                return str.Split(new char[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            }
+        }
 }
