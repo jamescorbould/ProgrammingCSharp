@@ -358,7 +358,7 @@ namespace _1_1_Multithreading_and_Async
             //Synchronization.CancelTaskEx();
             //Synchronization.TimeoutTask();
             //ControlStatements.TestForEachCannotChange();
-            Event e = new Event();
+            //Event e = new Event();
             //e.TestDelegate();
             //e.MulticastDelegate();
             //Lambda.TestLambda();
@@ -369,7 +369,9 @@ namespace _1_1_Multithreading_and_Async
             //e.CreateAndRaise4();
             //e.CreateAndRaise5();
             //Exceptions.Throw();
-            Exceptions.Throw2();
+            //Exceptions.Throw2();
+
+            MyInterlockedExchangeExampleClass.RunTest();
 
             Console.ReadKey();
         }
