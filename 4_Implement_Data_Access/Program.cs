@@ -14,6 +14,8 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Web.Script.Serialization;
+using System.Text.RegularExpressions;
 
 namespace _4_Implement_Data_Access
 {
@@ -35,7 +37,30 @@ namespace _4_Implement_Data_Access
             //LinqOrders();
             //LinqToXMLTest();
             //SerlializeOrder();
-            SerializeBinary();
+            //SerializeBinary();
+            //SerializeJS();
+            Patient p = new Patient { ID = 123, Name = "Grantx", Age = 104 };
+            Console.WriteLine(GetPropertyValueByReflection(p));
+
+            List<Patient> pcoll = new List<Patient>
+            {
+                new Patient { ID = 0, Age = 23, Name = "Bob" },
+                new Patient { ID = 1, Age = 40, Name = "James" }
+            };
+
+            Console.WriteLine("RegEx validation result = {0}", ValidateZipCodeRegEx("001"));
+
+            pcoll.Sort();
+
+            foreach(Patient pt in pcoll)
+            {
+                Console.WriteLine(pt.Name);
+            }
+
+            TestForLoop(pcoll);
+
+            TestComparePatients();
+
             Console.ReadKey();
         }
 
@@ -510,6 +535,93 @@ namespace _4_Implement_Data_Access
                 Person dp = (Person)formatter.Deserialize(stream);
                 Console.WriteLine("Person name = {0} {1}", dp.FirstName, dp.LastName);
             }
+        }
+
+        private static void SerializeJS()
+        {
+            Patient p = new Patient
+            {
+                ID = 1,
+                Name = "Bob",
+                Age = 34
+            };
+
+            var serializer = new JavaScriptSerializer();
+            var json = serializer.Serialize(p);
+
+            Console.WriteLine(json);
+
+            p = serializer.Deserialize<Patient>(json);
+
+            Console.WriteLine("p.Name = {0}", p.Name);
+
+            p = (Patient)serializer.Deserialize(json, p.GetType());
+
+            Console.WriteLine("p.Name = {0}", p.Name);
+
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            dict.Add("Name0", "James");
+            dict.Add("Name1", "Ben");
+            dict.Add("Name2", "Lockie");
+
+            json = serializer.Serialize(dict);
+
+            Console.WriteLine(json);
+        }
+
+        // Try reflection on Patient class to retrive name property.
+        public static string GetPropertyValueByReflection(Patient p)
+        {
+            return p.GetType().GetProperty("Name").GetValue(p).ToString();
+        }
+
+        public static void TestForLoop(List<Patient> pcoll)
+        {
+            // Gives runtime error, cannot use foreach to remove items from a collection.
+            //foreach (Patient p in pcoll)
+            //{
+            //    pcoll.RemoveAt(pcoll.IndexOf(p));
+            //}
+
+            Console.WriteLine("pcoll count = {0}", pcoll.Count());
+            int count = pcoll.Count();
+
+            for (int i = 0; i < count; i++)
+            {
+                pcoll.RemoveAt(0);
+            }
+
+            Console.WriteLine("pcoll count after remove = {0}", pcoll.Count());
+        }
+
+        public static bool ValidateZipCodeRegEx(string zipCode)
+        {
+            Match match = Regex.Match(zipCode, @"^[1-9][0-9]{3}\s?[a-zA-Z]{2}$", RegexOptions.IgnoreCase);
+            return match.Success;
+        }
+
+        public static void TestComparePatients()
+        {
+            List<Patient> pcoll = new List<Patient>
+            {
+                new Patient { Age = 55, ID = 0, Name = "Bob" },
+                new Patient { Age = 33, ID = 1, Name = "Jim" }
+            };
+
+            pcoll.Sort();
+
+            foreach (Patient p in pcoll)
+            {
+                Console.WriteLine(p.ToString());
+            }
+
+            var patArray = pcoll.ToArray();
+
+            // < 0 = current instance precedes object specified in the sort order.  'B' precedes 'J' if sorted alpha.
+            // 0 = current instance in the same pos in the sort order.
+            // > 0 = current instance follows the object specified in the sort order.  'J' follows 'B' in the sort order.
+            Console.WriteLine(patArray[0].CompareTo(patArray[1])); // returns -1.
+            Console.WriteLine(patArray[1].CompareTo(patArray[0])); // returns 1.
         }
     }
 }

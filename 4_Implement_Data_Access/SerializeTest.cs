@@ -6,6 +6,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.ServiceModel;
 
 namespace _4_Implement_Data_Access
 {
@@ -109,4 +110,36 @@ namespace _4_Implement_Data_Access
         public decimal Price { get; set; }
         public string Description { get; set; }
     }
+
+    public class Patient : IComparable
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+            { 
+                return 1;
+            }
+
+            Patient p = obj as Patient;
+
+            if (p == null)
+            {
+                throw new ArgumentException("Object is not an Patient");
+            }
+
+            return this.Name.CompareTo(p.Name);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("ID = {0}, Name = {1}, Age = {2}", this.ID, this.Name, this.Age);
+        }
+    }
+
+    //explcit interface defintion example. = 1 interface where only some methods should be called by a specific class.  since private, 
+        //cannot be called unless explicity implemented, so only explicit implement those methods required for the class from the interface.
 }
