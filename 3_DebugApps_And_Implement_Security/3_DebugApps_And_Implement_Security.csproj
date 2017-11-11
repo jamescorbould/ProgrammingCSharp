@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="DebugAndTrace.cs" />
     <Compile Include="IPatient.cs" />
+    <Compile Include="Patient.cs" />
     <Compile Include="Stream.cs" />
   </ItemGroup>
   <ItemGroup>

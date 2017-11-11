@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace _3_DebugApps_And_Implement_Security
 {
@@ -18,10 +19,44 @@ namespace _3_DebugApps_And_Implement_Security
             //Stream.DecoratorPatternStreams();
             //Stream.TestWebRequest();
             //Stream.CreateAndWriteAsyncToFile();
-            Stream.SequentialCalls();
-            Stream.ParallelCalls();
+            //Stream.SequentialCalls();
+            //Stream.ParallelCalls();
+
+            // Example of explicit interface design.
+            Patient p = new Patient(NHSNumber:1234, name:"Bob", age:33);
+            //PatientLoad pl = new PatientLoad();
+            //// Do a callback to the provided URL when done; pass back transaction GUID as a unique key for this job.
+            //Guid transactionGuid = await pl.DoBulkLoad(callbackURL:"https://callbackurl");
+            //Console.WriteLine("Transaction ID returned for bulk load = {0}", transactionGuid);
+
+            var t = Task.Factory.StartNew(async () =>
+            {
+                var transactionGuid = await RunBulkLoadTest();
+                Console.WriteLine("Transaction ID returned for bulk load = {0}", transactionGuid);
+            });
+            t.Wait();
+
+
+            //Task t = Task.Run(async () => await TestNonBlock());
             Console.ReadKey();
         }
+
+        public static async Task<Guid> RunBulkLoadTest()
+        {
+            PatientLoad pl = new PatientLoad();
+            // Do a callback to the provided URL when done; pass back transaction GUID as a unique key for this job.
+            Guid transactionGuid = await pl.DoBulkLoad(callbackURL: "https://callbackurl");
+            return transactionGuid;
+        }
+
+        public static async Task<string> TestNonBlock()
+        {
+            Console.WriteLine("Before call delay.");
+            Task.Delay(3000);
+            Console.WriteLine("After call delay.");
+            return "Done";
+        }
+
         public static void TestDebug()
         {
             // Output will be return to the Output window in Visual Studio.

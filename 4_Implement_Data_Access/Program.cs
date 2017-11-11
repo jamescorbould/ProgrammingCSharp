@@ -623,5 +623,10 @@ namespace _4_Implement_Data_Access
             Console.WriteLine(patArray[0].CompareTo(patArray[1])); // returns -1.
             Console.WriteLine(patArray[1].CompareTo(patArray[0])); // returns 1.
         }
+
+        public static void TestRaiseEvent()
+        {
+            
+        }
     }
 }

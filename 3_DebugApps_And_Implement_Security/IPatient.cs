@@ -8,9 +8,9 @@ namespace _3_DebugApps_And_Implement_Security
 {
     interface IPatient
     {
-        string GHNumber { get; set; }
+        Int64 NHSNumber { get; set; }
         string Name { get; set; }
-        string Age { get; set; }
-        System.Guid DoBulkLoad();
+        int Age { get; set; }
+        Task<Guid> DoBulkLoad(string callbackURL);
     }
 }
