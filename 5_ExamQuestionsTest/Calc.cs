@@ -22,5 +22,31 @@ namespace _5_ExamQuestionsTest
         {
             note = () => Console.WriteLine(msg);
         }
+
+        public static void TestChecked()
+        {
+            int i = 0;
+            double d = double.MaxValue;
+
+            try
+            {
+                // Check for buffer overflow for the int.
+                checked
+                {
+                    i = (int)d;
+                    Console.WriteLine(i);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception caught: {0}", e.Message);  // Arithmetic operation resulted in an overflow.
+            }
+
+            unchecked
+            {
+                i = (int)d;
+                Console.WriteLine(i);  // No exception is thrown and int is set to -2147483648.
+            }
+        }
     }
 }

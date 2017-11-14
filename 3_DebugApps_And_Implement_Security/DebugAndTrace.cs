@@ -29,15 +29,18 @@ namespace _3_DebugApps_And_Implement_Security
             //Guid transactionGuid = await pl.DoBulkLoad(callbackURL:"https://callbackurl");
             //Console.WriteLine("Transaction ID returned for bulk load = {0}", transactionGuid);
 
-            var t = Task.Factory.StartNew(async () =>
-            {
-                var transactionGuid = await RunBulkLoadTest();
-                Console.WriteLine("Transaction ID returned for bulk load = {0}", transactionGuid);
-            });
-            t.Wait();
+            //var t = Task.Factory.StartNew(async () =>
+            //{
+            //    var transactionGuid = await RunBulkLoadTest();
+            //    Console.WriteLine("Transaction ID returned for bulk load = {0}", transactionGuid);
+            //});
+            //t.Wait();
 
 
             //Task t = Task.Run(async () => await TestNonBlock());
+
+            TestDebugDirective();
+
             Console.ReadKey();
         }
 
@@ -151,5 +154,15 @@ namespace _3_DebugApps_And_Implement_Security
 
             return false;
         }
+
+        public static void TestDebugDirective() =>
+#if DEBUG
+            Console.WriteLine("Debug mode");
+#elif RELEASE
+            Console.WriteLine("Release mode");
+#else
+            Console.WriteLine("Not debug or release");
+#endif
+
     }
 }

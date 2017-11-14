@@ -38,28 +38,28 @@ namespace _4_Implement_Data_Access
             //LinqToXMLTest();
             //SerlializeOrder();
             //SerializeBinary();
-            //SerializeJS();
-            Patient p = new Patient { ID = 123, Name = "Grantx", Age = 104 };
-            Console.WriteLine(GetPropertyValueByReflection(p));
+            SerializeJS();
+            //Patient p = new Patient { ID = 123, Name = "Grantx", Age = 104 };
+            //Console.WriteLine(GetPropertyValueByReflection(p));
 
-            List<Patient> pcoll = new List<Patient>
-            {
-                new Patient { ID = 0, Age = 23, Name = "Bob" },
-                new Patient { ID = 1, Age = 40, Name = "James" }
-            };
+            //List<Patient> pcoll = new List<Patient>
+            //{
+            //    new Patient { ID = 0, Age = 23, Name = "Bob" },
+            //    new Patient { ID = 1, Age = 40, Name = "James" }
+            //};
 
-            Console.WriteLine("RegEx validation result = {0}", ValidateZipCodeRegEx("001"));
+            //Console.WriteLine("RegEx validation result = {0}", ValidateZipCodeRegEx("001"));
 
-            pcoll.Sort();
+            //pcoll.Sort();
 
-            foreach(Patient pt in pcoll)
-            {
-                Console.WriteLine(pt.Name);
-            }
+            //foreach(Patient pt in pcoll)
+            //{
+            //    Console.WriteLine(pt.Name);
+            //}
 
-            TestForLoop(pcoll);
+            //TestForLoop(pcoll);
 
-            TestComparePatients();
+            //TestComparePatients();
 
             Console.ReadKey();
         }

@@ -99,7 +99,7 @@ namespace _5_ExamQuestionsTest
             SerializeToJSON();
             Person2 p2 = DeserializeJSONToObject("{\"name\": \"Bob\", \"age\": 19}");
             Console.WriteLine("name = {0}, age = {1}", p2.name, p2.age);
-                
+
             //var graph = BuildHelloWorldGraph.BuildGraph();
             //string sourceFile = BuildHelloWorldGraph.GenerateCSharpCode(graph);
             //bool success = BuildHelloWorldGraph.CompileCSharpCode(sourceFile, @".\HelloWorld.exe");
@@ -140,6 +140,8 @@ namespace _5_ExamQuestionsTest
             //GetRefAssemblies();
             //string hello = "hello world";
             //GetType(hello);
+
+            Calc.TestChecked();
 
             Console.ReadKey();
         }

@@ -1,4 +1,6 @@
-﻿namespace _5_ExamQuestionsTest
+﻿using System.Text.RegularExpressions;
+
+namespace _5_ExamQuestionsTest
 {
     partial class Program
     {
@@ -22,6 +24,13 @@
             public string saysomething()
             {
                 return catchphrase;
+            }
+
+            public bool ValidateZipCodeRegEx(string zipCode)
+            {
+                Match match = Regex.Match(zipCode, @"^[1-9][0-9]{3}\s?[a-zA-Z]{2}$", RegexOptions.IgnoreCase);
+                //bool success (string z) => { Regex.Match(z, @"^[1-9][0-9]{3}\s?[a-zA-Z]{2}$", RegexOptions.IgnoreCase); }
+                return match.Success;
             }
         }
     }
