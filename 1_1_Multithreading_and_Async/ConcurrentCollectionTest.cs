@@ -23,9 +23,9 @@ namespace _1_1_Multithreading_and_Async
             //    });
 
             Task read = Task.Run(() =>
-                {
-                    foreach (string v in col.GetConsumingEnumerable()) { Console.WriteLine(v); }
-                });
+            {
+                foreach (string v in col.GetConsumingEnumerable()) { Console.WriteLine(v); }
+            });
 
             Task write = Task.Run(() =>
             {

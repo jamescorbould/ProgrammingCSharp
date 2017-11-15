@@ -229,6 +229,7 @@ namespace _1_1_Multithreading_and_Async
         {
             Task<int>[] tasks = new Task<int>[3];
 
+            // These execute in parallel.
             tasks[0] = Task.Run(() => { Thread.Sleep(2000); return 1; });
             tasks[1] = Task.Run(() => { Thread.Sleep(1000); return 2; });
             tasks[2] = Task.Run(() => { Thread.Sleep(3000); return 3; });
@@ -333,7 +334,7 @@ namespace _1_1_Multithreading_and_Async
             //RunChildTasks();
             //TaskFactoryDemo();
             //TaskWaitAllDemo();
-            //TaskWaitAnyDemo();
+            TaskWaitAnyDemo();
 
             //ParallelDemoBreak();
 
@@ -371,7 +372,7 @@ namespace _1_1_Multithreading_and_Async
             //Exceptions.Throw();
             //Exceptions.Throw2();
 
-            MyInterlockedExchangeExampleClass.RunTest();
+            //MyInterlockedExchangeExampleClass.RunTest();
 
             Console.ReadKey();
         }
