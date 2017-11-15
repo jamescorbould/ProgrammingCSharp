@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,10 @@ namespace _5_ExamQuestionsTest
             int i = 0;
             double d = double.MaxValue;
 
+            // Debug is only available with debug builds.
+            // ConditionalAttribute with a value of DEBUG is applied to the Debug class, hence why Debug is only called when using debug builds.
+            Debug.WriteLine("Debug #1");  // Writes the error message to VS output window.
+
             try
             {
                 // Check for buffer overflow for the int.
@@ -45,8 +50,19 @@ namespace _5_ExamQuestionsTest
             unchecked
             {
                 i = (int)d;
-                Console.WriteLine(i);  // No exception is thrown and int is set to -2147483648.
+                Console.WriteLine(i);  // No exception is thrown and int is set to -2147483648, which is max size for an int.
             }
+        }
+
+        public static void TestDisableWarning()
+        {
+#pragma warning disable
+            // Unreachable code detected warning is suppressed due to pragma directive.
+            while (false)
+            {
+                Console.WriteLine("Unreachable code");
+            }
+#pragma warning restore
         }
     }
 }

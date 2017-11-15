@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace _3_DebugApps_And_Implement_Security
@@ -10,7 +11,7 @@ namespace _3_DebugApps_And_Implement_Security
         {
             //testDebug();
             //testTrace();
-            //PerfCounters();
+            PerfCounters();
             //IncrementCustomCounters();
             //Stream.FilestreamTest();
             //Stream.StreamWriterTest();
@@ -23,7 +24,7 @@ namespace _3_DebugApps_And_Implement_Security
             //Stream.ParallelCalls();
 
             // Example of explicit interface design.
-            Patient p = new Patient(NHSNumber:1234, name:"Bob", age:33);
+            //Patient p = new Patient(NHSNumber:1234, name:"Bob", age:33);
             //PatientLoad pl = new PatientLoad();
             //// Do a callback to the provided URL when done; pass back transaction GUID as a unique key for this job.
             //Guid transactionGuid = await pl.DoBulkLoad(callbackURL:"https://callbackurl");
@@ -39,7 +40,10 @@ namespace _3_DebugApps_And_Implement_Security
 
             //Task t = Task.Run(async () => await TestNonBlock());
 
-            TestDebugDirective();
+            //TestDebugDirective();
+            //TestTrace();
+            //TestTraceToTextFile();
+            //TestTraceToTextFileViaConfig();
 
             Console.ReadKey();
         }
@@ -72,6 +76,34 @@ namespace _3_DebugApps_And_Implement_Security
 
         public static void TestTrace()
         {
+            TraceSource traceSource = new TraceSource("myTraceSource", SourceLevels.All);
+
+            traceSource.TraceInformation("Tracing application...");
+            traceSource.TraceEvent(TraceEventType.Critical, 0, "Critical trace");
+            traceSource.TraceData(TraceEventType.Information, 1, new object[] { "a", "b", "c" });
+
+            traceSource.Flush();
+            traceSource.Close();
+        }
+
+        public static void TestTraceToTextFile()
+        {
+            // Create a trace listener that writes trace info to a text file.
+            System.IO.Stream outputFile = File.Create("tracefile.txt");
+            TextWriterTraceListener textListener = new TextWriterTraceListener(outputFile); // Write trace info to text file.
+            TraceSource traceSource = new TraceSource("myTraceSource", SourceLevels.All);
+
+            traceSource.Listeners.Clear();
+            traceSource.Listeners.Add(textListener);
+            traceSource.TraceInformation("Trace output");
+
+            traceSource.Flush();
+            traceSource.Close();
+        }
+
+        public static void TestTraceToTextFileViaConfig()
+        {
+            // Should use trace listeners specified in App.config file.
             TraceSource traceSource = new TraceSource("myTraceSource", SourceLevels.All);
 
             traceSource.TraceInformation("Tracing application...");
