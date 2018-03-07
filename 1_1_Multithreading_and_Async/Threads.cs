@@ -8,14 +8,14 @@ namespace _1_1_Multithreading_and_Async
 {
     class Threads
     {
-        //[ThreadStatic]
-        //public static int _field;
+        [ThreadStatic] // Each thread will get a new instance of this static field.
+        public static int _field2;
 
-        // 
+        // Use local data for each thread and initialize for each thread.
         public static ThreadLocal<int> _field =
             new ThreadLocal<int>(() =>
             {
-                return Thread.CurrentThread.ManagedThreadId;
+                return 3;
             });
 
         public static void ThreadMethod()
@@ -56,6 +56,8 @@ namespace _1_1_Multithreading_and_Async
 
             stopped = true;
             t.Join();
+
+            Console.WriteLine("\n*** Thread stopped. ***");
         }
 
         // Each thread can have it's own copy of a variable.
@@ -64,19 +66,42 @@ namespace _1_1_Multithreading_and_Async
         {
             new Thread(() =>
             {
-                for (int x = 0; x < _field.Value; x++)
+                for (int x = 0; x < 10; x++)
                 {
-                    //_field++;
-                    Console.WriteLine("Thread A: {0}", x);
+                    _field2++;
+                    Console.WriteLine("Thread A: {0}", _field2);
                 }
             }).Start();
 
             new Thread(() =>
             {
-                for (int x = 0; x < _field.Value; x++)
+                for (int x = 0; x < 10; x++)
                 {
-                    //_field++;
-                    Console.WriteLine("Thread B: {0}", x);
+                    _field2++;
+                    Console.WriteLine("Thread B: {0}", _field2);
+                }
+            }).Start();
+
+            Console.ReadKey();
+        }
+
+        public static void ThreadLocal()
+        {
+            new Thread(() =>
+            {
+                for (int x = 0; x < 10; x++)
+                {
+                    _field.Value++;
+                    Console.WriteLine("Thread A: {0}", _field);
+                }
+            }).Start();
+
+            new Thread(() =>
+            {
+                for (int x = 0; x < 10; x++)
+                {
+                    _field.Value++;
+                    Console.WriteLine("Thread B: {0}", _field);
                 }
             }).Start();
 
@@ -87,9 +112,7 @@ namespace _1_1_Multithreading_and_Async
         {
             // Sample showing assignment of a thread from the thread pool, to execute a task.
             // Work is queued pending assignment of a thread from the pool.
-            ThreadPool.QueueUserWorkItem((s) =>
-                { Console.WriteLine("Working on thread obtained from the thread pool."); });
-
+            ThreadPool.QueueUserWorkItem((s) => { Console.WriteLine("Working on thread obtained from the thread pool.");} );
             Console.ReadKey();
         }
 
@@ -144,7 +167,7 @@ namespace _1_1_Multithreading_and_Async
         // Attaching child tasks to a parent task.
         public static void RunChildTasks()
         {
-            Task<Int32[]> parent = Task.Run(() =>
+            Task<Int32[]> parent = Task.Run(() =>  // Task will return Int32[].
             {
                 var results = new Int32[3];
                 new Task(() => results[0] = 0,
@@ -309,10 +332,10 @@ namespace _1_1_Multithreading_and_Async
             //for (int i = 0; i < 4; i++)
             //{
             //    Console.WriteLine("Main thread: Do some work.");
-            //    Thread.Sleep(0);
+            //    Thread.Sleep(0);  // Used to signal Windows that this thread has finished and so Windows will immediately switch to another thread.
             //}
 
-            //t.Join();
+            //t.Join();  // Do not exit this main method until thread t has completed.
 
             //Thread t2 = new Thread(new ParameterizedThreadStart(ThreadMethod2));
             //t2.Start(5);
@@ -324,6 +347,8 @@ namespace _1_1_Multithreading_and_Async
 
             //ThreadStatic();
 
+            //ThreadLocal();
+
             //ThPool();
 
             //RunTask();
@@ -334,7 +359,7 @@ namespace _1_1_Multithreading_and_Async
             //RunChildTasks();
             //TaskFactoryDemo();
             //TaskWaitAllDemo();
-            TaskWaitAnyDemo();
+            //TaskWaitAnyDemo();
 
             //ParallelDemoBreak();
 

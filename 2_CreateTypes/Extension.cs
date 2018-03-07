@@ -9,10 +9,8 @@ namespace _2_CreateTypes
 
     public static class MyExtensions  // Static class.
     {
-        public static decimal Discount(this Product product)  // Static method.  Use of this keyword in method parameter.
-        {
-            return product.Price * 0.9M;
-        }
+        // Static method.  Use of this keyword in method parameter.  Extension method for the Product class.
+        public static decimal Discount(this Product product) => product.Price * 0.9M;
     }
 
     public class Calculator
@@ -42,7 +40,7 @@ namespace _2_CreateTypes
 
     class Derived2 : Derived
     {
-        // This line gives a compiler error.
+        // This line gives a compiler error since MyMethod() is declared sealed.
         //public override int MyMethod()
         //{
         //    return 1;

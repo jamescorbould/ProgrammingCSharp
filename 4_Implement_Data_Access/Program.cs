@@ -31,14 +31,14 @@ namespace _4_Implement_Data_Access
             //TestXMLReader();
             //TestXMLWriterCreateFile();
             //TestXMLDoc();
-            //TestXPath();
+            TestXPath();
             //LinqSelectTest();
             //LinqJoinTest();
             //LinqOrders();
             //LinqToXMLTest();
             //SerlializeOrder();
             //SerializeBinary();
-            SerializeJS();
+            //SerializeJS();
             //Patient p = new Patient { ID = 123, Name = "Grantx", Age = 104 };
             //Console.WriteLine(GetPropertyValueByReflection(p));
 
@@ -247,7 +247,7 @@ namespace _4_Implement_Data_Access
 
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xml);
-            XmlNodeList nodes = doc.GetElementsByTagName("Person");
+            XmlNodeList nodes = doc.GetElementsByTagName(name: "person");
 
             // Output the names of the people in the document.
             foreach (XmlNode node in nodes)
@@ -533,6 +533,7 @@ namespace _4_Implement_Data_Access
             using (Stream stream = new FileStream(@"C:\temp\data.bin", FileMode.Open))
             {
                 Person dp = (Person)formatter.Deserialize(stream);
+                //Person dp2 = formatter.Deserialize<Person>(stream);  // Compiler error - no generic version.
                 Console.WriteLine("Person name = {0} {1}", dp.FirstName, dp.LastName);
             }
         }

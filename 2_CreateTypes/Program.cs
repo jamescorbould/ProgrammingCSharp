@@ -77,9 +77,11 @@ namespace _2_CreateTypes
 
             //Book book = new Book("The Hobbit");
 
-            string s = "James Corbould";
-            Console.WriteLine("string '{0}' wordcount = {1}", s, s.WordCount());  // Call extension method on string.
+            //string s = "James Corbould";
+            //Console.WriteLine("string '{0}' wordcount = {1}", s, s.WordCount());  // Call extension method on string.
 
+            ArrayTest.MultiDimArrayTest();
+            ArrayTest.JaggedArrayTest();
 
             Console.ReadKey();
         }

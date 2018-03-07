@@ -1,4 +1,5 @@
 ﻿using Microsoft.CSharp;
+using Microsoft.VisualBasic;
 using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
@@ -32,10 +33,18 @@ namespace _2_CreateTypes
             start.Statements.Add(csl);
 
             CSharpCodeProvider provider = new CSharpCodeProvider();  // Could call a different code provider to output code for diff language.
+            VBCodeProvider providerVb = new VBCodeProvider();
 
             using (StreamWriter sw = new StreamWriter("HelloWorld.cs", false))
             {
                 IndentedTextWriter tw = new IndentedTextWriter(sw, "     ");
+                provider.GenerateCodeFromCompileUnit(compileUnit, tw, new CodeGeneratorOptions());
+                tw.Close();
+            }
+
+            using (StreamWriter sw2 = new StreamWriter("HelloWorld.vb", false))
+            {
+                IndentedTextWriter tw = new IndentedTextWriter(sw2, "     ");
                 provider.GenerateCodeFromCompileUnit(compileUnit, tw, new CodeGeneratorOptions());
                 tw.Close();
             }
