@@ -30,8 +30,8 @@ namespace _2_CreateTypes
 
         public static void JaggedArrayTest()
         {
-            // It’s an array of an array, which means it’s a kind of array whose elements are also an array.
-            // Each element of a jagged array may have a different size.
+            // Jagged array is an array of an array, which means number of rows in jagged array is
+            // fixed but number of columns isn’t fixed.
             int[][] jagged = new int[4][]; // Jagged array with 4 rows.
 
             // Declare each row with different number of columns.
@@ -48,7 +48,23 @@ namespace _2_CreateTypes
             {
                 for (int col = 0; col < jagged[row].GetLength(0); col++)
                 {
-                    Console.WriteLine("[{0}],[{1}] = {2}", row, col, jagged[row][col]);
+                    //Console.WriteLine("[{0}],[{1}] = {2}", row, col, jagged[row][col]);
+                }
+            }
+
+            int[][] jagged2 =
+                {
+                    new int[]{4,5},
+                    new int[]{6,7,8},
+                    new int[]{9,10,11},
+                    new int[]{12,13,14,15}
+                };
+
+            for (int row = 0; row < jagged2.GetLength(0); row ++)
+            {
+                for (int col = 0; col < jagged2[row].GetLength(0); col++)
+                {
+                    Console.WriteLine("[{0}],[{1}] = {2}", row, col, jagged2[row][col]);
                 }
             }
         }

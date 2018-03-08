@@ -80,10 +80,65 @@ namespace _2_CreateTypes
             //string s = "James Corbould";
             //Console.WriteLine("string '{0}' wordcount = {1}", s, s.WordCount());  // Call extension method on string.
 
-            ArrayTest.MultiDimArrayTest();
-            ArrayTest.JaggedArrayTest();
+            //ArrayTest.MultiDimArrayTest();
+            //ArrayTest.JaggedArrayTest();
+            //TestNullCoalescingOp();
+            Console.WriteLine(NamedParameters(lastName: "Corbould", firstName: "James")); // Specify named parameters so can be ref out of order.
+            Console.WriteLine(MultOptionalParameter(5));
 
+            int j = 0;
+            IntByRef(ref j); // Pass memory address of j, not it's actual value.
+            Console.WriteLine("j = {0}", j);
+
+            int i = 0;
+            Sum(out i);
+            Console.WriteLine("i = {0}", i);
+
+            int[] array = { 1, 40, 36, 4 };
+            int total = SumAll(array);
+            Console.WriteLine("Sum total = {0}", total);
+            
             Console.ReadKey();
+        }
+
+        public static void TestNullCoalescingOp()
+        {
+            // Returns left-hand variable if it’s not null; otherwise, it
+            // returns a default value stored in a right-hand variable.
+            string name = null;
+            Console.WriteLine("Hello {0}", name ?? "user"); // If name is null, then print "user".
+        }
+
+        public static string NamedParameters(string firstName, string lastName)
+        {
+            return firstName + " " + lastName;
+        }
+
+        public static int MultOptionalParameter(int x, int y = 10) // Variable y defaults to 10 if not specified.
+        {
+            return x * y;
+        }
+
+        public static void IntByRef(ref int i)
+        {
+            i++;
+        }
+
+        public static void Sum(out int j)
+        {
+            j = 1;
+        }
+
+        public static int SumAll(params int[] args) // Params allows unlimited number of args to be sent to a method.
+        {
+            int total = 0;
+
+            foreach(int i in args)
+            {
+                total += i;
+            }
+
+            return total;
         }
     }
 }
