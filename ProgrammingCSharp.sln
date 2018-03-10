@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1_1_Multithreading_and_Async", "1_1_Multithreading_and_Async\1_1_Multithreading_and_Async.csproj", "{B9F8260A-DD37-4424-AF8C-6BFA6AA55B45}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serialization", "Serialization\Serialization.csproj", "{742AC9E9-6E9C-4208-9BFD-88823911FE74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indexers", "Indexers\Indexers.csproj", "{8CA52DA4-D90F-4165-AAB7-AB47CBA1780F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportCardApp", "ReportCardApp\ReportCardApp.csproj", "{9C5EC889-364C-44E3-A142-2AC41D70525E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{8CA52DA4-D90F-4165-AAB7-AB47CBA1780F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CA52DA4-D90F-4165-AAB7-AB47CBA1780F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CA52DA4-D90F-4165-AAB7-AB47CBA1780F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C5EC889-364C-44E3-A142-2AC41D70525E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C5EC889-364C-44E3-A142-2AC41D70525E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C5EC889-364C-44E3-A142-2AC41D70525E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C5EC889-364C-44E3-A142-2AC41D70525E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
