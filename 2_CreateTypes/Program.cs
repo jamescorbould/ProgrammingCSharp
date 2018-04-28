@@ -83,24 +83,53 @@ namespace _2_CreateTypes
             //ArrayTest.MultiDimArrayTest();
             //ArrayTest.JaggedArrayTest();
             //TestNullCoalescingOp();
-            Console.WriteLine(NamedParameters(lastName: "Corbould", firstName: "James")); // Specify named parameters so can be ref out of order.
-            Console.WriteLine(MultOptionalParameter(5));
+            //Console.WriteLine(NamedParameters(lastName: "Corbould", firstName: "James")); // Specify named parameters so can be ref out of order.
+            //Console.WriteLine(MultOptionalParameter(5));
 
-            int j = 0;
-            IntByRef(ref j); // Pass memory address of j, not it's actual value.
-            Console.WriteLine("j = {0}", j);
+            //int j = 0;
+            //IntByRef(ref j); // Pass memory address of j, not it's actual value.
+            //Console.WriteLine("j = {0}", j);
 
-            int i = 0;
-            Sum(out i);
-            Console.WriteLine("i = {0}", i);
+            //int i = 0;
+            //Sum(out i);
+            //Console.WriteLine("i = {0}", i);
 
-            int[] array = { 1, 40, 36, 4 };
-            int total = SumAll(array);
-            Console.WriteLine("Sum total = {0}", total);
-            
+            //int[] array = { 1, 40, 36, 4 };
+            //int total = SumAll(array);
+            //Console.WriteLine("Sum total = {0}", total);
+
+            //Console.WriteLine("(byte)EnumTest.Status.Alive = {0}", (byte)EnumTest.Status.Alive);
+            //Console.WriteLine("EnumTest.Status.Alive = {0}", EnumTest.Status.Alive);
+
+            //EnumTest.BorderSides leftRight = EnumTest.BorderSides.Left | EnumTest.BorderSides.Right;
+            //Console.WriteLine("leftRight = {0}", leftRight);
+
+            //EnumTest.Colours mix = EnumTest.Colours.Blue | EnumTest.Colours.Green;
+            // 0x00010000
+            // 0x00000100
+            // 0x00010100 => mix now represents blue and green.
+            //Console.WriteLine("mix = {0}", mix);
+
+            DynamicTest.Test();
+
+            string name = "James Rupert Corbould";
+            Console.WriteLine("name world count using extension method = {0}", name.WordCount());
+
+            int age = 40;
+            Console.WriteLine("age.IsLessThan(60) = {0}", age.IsLessThan(60));  // Call extension method on int.
+
+            string city = "Auckland";
+            Console.WriteLine("city.First(\"Auckland\") = {0}", city.First<char>());
+
             Console.ReadKey();
         }
 
+        public static void NullTest()
+        {
+            //int i = null; // Fails since value types cannot be null.
+            int? i = null; // Using nullable, int can now be null.
+            Nullable<int> x = null; // Alternative.  Can be simplified to the above.
+        }
         public static void TestNullCoalescingOp()
         {
             // Returns left-hand variable if it’s not null; otherwise, it

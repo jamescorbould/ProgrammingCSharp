@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace _2_CreateTypes
 {
@@ -67,12 +68,39 @@ namespace _2_CreateTypes
         }
     }
 
-        // Class for extension methods.
-        public static class MyExtensions2  // Static class.
+    // Class for extension methods.
+    public static class MyExtensions2  // Static class.
+    {
+        public static int WordCount(this String str)  // Static method.  Use of this keyword in parameter.
         {
-            public static int WordCount(this String str)  // Static method.  Use of this keyword in parameter.
+            return str.Split(new char[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
+        }
+    }
+
+    public static class MyExtensionsClass
+    {
+        // Since *this* keyword is used on an int, then this extension method is available on all int.
+        public static bool IsLessThan(this int origin, int compareValue)
+        {
+            if (origin < compareValue)
             {
-                return str.Split(new char[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
+
+        // Extension methods can be used on interfaces too.
+        public static T First<T> (this IEnumerable<T> sequence)
+        {
+            foreach (T element in sequence)
+            {
+                return element;
+            }
+
+            throw new InvalidOperationException("No elements!");
+        }
+    }
 }

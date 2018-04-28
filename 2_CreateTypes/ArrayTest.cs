@@ -30,7 +30,7 @@ namespace _2_CreateTypes
 
         public static void JaggedArrayTest()
         {
-            // Jagged array is an array of an array, which means number of rows in jagged array is
+            // Jagged array is an array of arrays, which means number of rows in jagged array is
             // fixed but number of columns isn’t fixed.
             int[][] jagged = new int[4][]; // Jagged array with 4 rows.
 
