@@ -26,7 +26,7 @@ namespace _2_CreateTypes
         }
 
         [Flags]
-        public enum Colours
+        public enum Colours  // Bit flags.
         {
             None=0,     // 0x00000000
             Red=1,      // 0x00000010

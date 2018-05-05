@@ -21,6 +21,38 @@ namespace Indexers
         }
     }
 
+    class Temperature
+    {
+        private float[] weekTemp = { 47.5F, 40.0F, 52.5F, 45.5F, 48.0F, 38.0F, 35.7F };
+
+        // Define an indexer property that encapsulates the float array and allows the array to be accessed safely.
+        public float this[int index]
+        {
+            get
+            {
+                if (index >= 0 && index < weekTemp.Length)
+                {
+                    return weekTemp[index];
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    weekTemp[index] = value;
+                }
+                else
+                {
+                    Console.WriteLine("Please set value greater than 0");
+                }
+            }
+        }
+    }
+
     class Program
     {
         static void Main()
@@ -28,6 +60,11 @@ namespace Indexers
             var stringCollection = new SampleCollection<string>();
             stringCollection[0] = "Hello, World";
             Console.WriteLine(stringCollection[0]);
+
+            Temperature temps = new Temperature();
+            temps[6] = 30.0F;
+            temps[0] = 0F;
+
             Console.ReadKey();
         }
     }

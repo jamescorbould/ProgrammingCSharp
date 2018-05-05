@@ -56,4 +56,39 @@ namespace _2_CreateTypes
                 return false;
         }
     }
+    
+    interface IMaths
+    {
+        int Marks { get; }
+    }
+
+    interface IEnglish
+    {
+        int Marks { get; }
+    }
+
+    class Student : IMaths, IEnglish
+    {
+        /// <summary>
+        /// Example of explicit interface defintion, to cope with 2 different interfaces containing field of the same name.
+        /// </summary>
+        int mathsMarks = 10;
+        int englishMarks = 5;
+
+        int IMaths.Marks
+        {
+            get
+            {
+                return mathsMarks;
+            }
+        }
+
+        int IEnglish.Marks
+        {
+            get
+            {
+                return englishMarks;
+            }
+        }
+    }
 }

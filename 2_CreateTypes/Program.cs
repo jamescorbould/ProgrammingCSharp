@@ -104,22 +104,63 @@ namespace _2_CreateTypes
             //EnumTest.BorderSides leftRight = EnumTest.BorderSides.Left | EnumTest.BorderSides.Right;
             //Console.WriteLine("leftRight = {0}", leftRight);
 
-            //EnumTest.Colours mix = EnumTest.Colours.Blue | EnumTest.Colours.Green;
+            EnumTest.Colours mix = EnumTest.Colours.Blue | EnumTest.Colours.Green;
             // 0x00010000
             // 0x00000100
             // 0x00010100 => mix now represents blue and green.
-            //Console.WriteLine("mix = {0}", mix);
+            Console.WriteLine("mix = {0}", mix);
 
-            DynamicTest.Test();
+            //DynamicTest.Test();
 
-            string name = "James Rupert Corbould";
-            Console.WriteLine("name world count using extension method = {0}", name.WordCount());
+            //string name = "James Rupert Corbould";
+            //Console.WriteLine("name world count using extension method = {0}", name.WordCount());
 
-            int age = 40;
-            Console.WriteLine("age.IsLessThan(60) = {0}", age.IsLessThan(60));  // Call extension method on int.
+            //int age = 40;
+            //Console.WriteLine("age.IsLessThan(60) = {0}", age.IsLessThan(60));  // Call extension method on int.
 
-            string city = "Auckland";
-            Console.WriteLine("city.First(\"Auckland\") = {0}", city.First<char>());
+            //string city = "Auckland";
+            //Console.WriteLine("city.First(\"Auckland\") = {0}", city.First<char>());
+
+            //Vehicle vehicle = new Bike();
+            //Console.WriteLine("Bike num of wheels = {0}", vehicle.wheels);
+
+            //IVehicle truck = new Truck();
+            //Console.WriteLine("Truck wheels = {0}", truck.wheels);
+
+            //Student student = new Student();
+            //Console.WriteLine("((IEnglish)student).Marks = {0}", ((IEnglish)student).Marks);
+            //Console.WriteLine("((IMaths)student).Marks = {0}", ((IMaths)student).Marks);
+
+            // Example of custom operator overloading.
+            //Distance d = new Distance();
+            //Console.WriteLine("d.metre = {0}", d.metre);
+            //d++;
+            //Console.WriteLine("d.metre = {0}", d.metre);
+
+            //Pupil p1 = new Pupil();
+            //Pupil p2 = new Pupil();
+            //p1.marks = 55;
+            //p2.marks = 75;
+            //p1 = p1 + p2;
+            //Console.WriteLine("p1.marks = {0}", p1.marks);
+
+            Distance d1 = new Distance { metre = 10 };
+            Distance d2 = new Distance { metre = 20 };
+
+            if (d1 < d2)
+            {
+                Console.WriteLine("d1 < d2");
+            }
+            else if (d2 < d1)
+            {
+                Console.WriteLine("d2 < d1");
+            }
+
+            Cat c = new Cat();
+            c.MakeANoise();
+
+            Dog d = new Dog();
+            d.MakeANoise();
 
             Console.ReadKey();
         }
