@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -104,11 +105,11 @@ namespace _2_CreateTypes
             //EnumTest.BorderSides leftRight = EnumTest.BorderSides.Left | EnumTest.BorderSides.Right;
             //Console.WriteLine("leftRight = {0}", leftRight);
 
-            EnumTest.Colours mix = EnumTest.Colours.Blue | EnumTest.Colours.Green;
+            //EnumTest.Colours mix = EnumTest.Colours.Blue | EnumTest.Colours.Green;
             // 0x00010000
             // 0x00000100
             // 0x00010100 => mix now represents blue and green.
-            Console.WriteLine("mix = {0}", mix);
+            //Console.WriteLine("mix = {0}", mix);
 
             //DynamicTest.Test();
 
@@ -144,23 +145,204 @@ namespace _2_CreateTypes
             //p1 = p1 + p2;
             //Console.WriteLine("p1.marks = {0}", p1.marks);
 
-            Distance d1 = new Distance { metre = 10 };
-            Distance d2 = new Distance { metre = 20 };
+            //Distance d1 = new Distance { metre = 10 };
+            //Distance d2 = new Distance { metre = 20 };
 
-            if (d1 < d2)
-            {
-                Console.WriteLine("d1 < d2");
-            }
-            else if (d2 < d1)
-            {
-                Console.WriteLine("d2 < d1");
-            }
+            //if (d1 < d2)
+            //{
+            //    Console.WriteLine("d1 < d2");
+            //}
+            //else if (d2 < d1)
+            //{
+            //    Console.WriteLine("d2 < d1");
+            //}
 
-            Cat c = new Cat();
-            c.MakeANoise();
+            //Cat c = new Cat();
+            //c.MakeANoise();
 
-            Dog d = new Dog();
-            d.MakeANoise();
+            //Dog d = new Dog();
+            //d.MakeANoise();
+
+            //Transformer t = new Transformer();
+            //string input = String.Empty;
+
+            //while (input.ToUpper() != "X")
+            //{
+            //    input = Console.ReadLine();
+
+            //    switch (input)
+            //    {
+            //        case "Air":
+            //            t = new Jet();
+            //            break;
+            //        case "Sea":
+            //            t = new Boat();
+            //            break;
+            //        case "Train":
+            //            t = new Train();
+            //            break;
+            //        case "X":
+            //            break;
+            //        default:
+            //            t = new Transformer();
+            //            break;
+            //    }
+
+            //    Console.WriteLine(t.Run());
+            //}
+
+            //GenericClass<SuperHero, string> genericClass = new GenericClass<SuperHero, string>(new SuperHero { AliasName = "Superman", CanFly = true }, "James");
+            ////GenericClass<int, string> genericClass = new GenericClass<int, string>();
+            //Console.WriteLine(genericClass.ToString());
+
+            //Person<SuperHero> person = new Person<SuperHero>(new SuperHero { AliasName = "Superman", CanFly = true });
+            ////Person<SuperHero> person = new Person<SuperHero>();
+            //Console.WriteLine(person.ToString());
+            //person.MultipleGenericMethodArgs("Bob", "Smith");
+
+            //var result = person.ReturnFromMultipleGenericMethodArgs<int, int>(10);
+            //Console.WriteLine("var result = {0}", result);
+
+            //var result2 = person.ReturnFromGenericValueType<int>(40); // Generic method constraint - must be a value type.
+            //Console.WriteLine("var result2 = {0}", result2);
+
+            //// Angle brackets not needed for a generic method - example:
+            //var result3 = person.ReturnFromGenericValueType(40); // Generic method constraint - must be a value type.
+            //Console.WriteLine("var result3 = {0}", result3);
+
+            // Will give a complier error since arg must be a value type and string is a ref type.
+            //var result3 = person.ReturnFromGenericValueType<string>("bob"); // Generic method constraint - must be a value type.
+            //Console.WriteLine("var result2 = {0}", result2);
+
+            //var person = new Person { name = "Bob", age = 29 }
+            //var person = new { name = "Bob", age = 29 }; // Anon type - defined inline type, no need to create a class.
+            //Console.WriteLine("person name = {0}, type = {1}", person.name, person.GetType());
+
+            //List<string> list = new List<string> { "Bob", "Jane" };
+
+            //foreach (var thing in list)
+            //{
+            //    var name = thing;
+            //    Console.WriteLine("name = {0}", name.ToString());
+            //}
+
+            //dynamic myDynamicVar;
+            //myDynamicVar = "Bob";
+
+            //Console.WriteLine("dynamic variable = {0}, type = {1}", myDynamicVar, myDynamicVar.GetType());
+
+            //myDynamicVar = 10;
+
+            //Console.WriteLine("dynamic variable = {0}, type = {1}", myDynamicVar, myDynamicVar.GetType());
+
+            //myDynamicVar = true;
+
+            //try
+            //{
+            //    if (myDynamicVar == "Bob")
+            //    {
+            //        Console.WriteLine("hi bob");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("no bob here");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("an error occured" + ex.Message);
+            //    throw;
+            //}
+
+            //ArrayList list = new ArrayList();
+            //list.Add(new SuperHero { AliasName = "Superman", CanFly = false, Age = 23 });
+            //list.Add(new SuperHero { AliasName = "Batman", CanFly = true, Age = 11 });
+            //list.Add(new SuperHero { AliasName = "X-Man", CanFly = true, Age = 81 });
+            //list.Add(new SuperHero { AliasName = "Wolverine", CanFly = false, Age = 4 });
+            //list.Sort();
+
+            //foreach (SuperHero hero in list)
+            //{
+            //    Console.WriteLine("Super Hero Name = {0}, Can Fly = {1}, Age = {2}", hero.AliasName, hero.CanFly, hero.Age);
+            //}
+
+            //list.Sort(new SortByAge());
+            //Console.WriteLine("\n");
+
+            //foreach (SuperHero hero in list)
+            //{
+            //    Console.WriteLine("Super Hero Name = {0}, Can Fly = {1}, Age = {2}", hero.AliasName, hero.CanFly, hero.Age);
+            //}
+
+            //list.Sort(new SortByName());
+            //Console.WriteLine("\n");
+
+            //foreach (SuperHero hero in list)
+            //{
+            //    Console.WriteLine("Super Hero Name = {0}, Can Fly = {1}, Age = {2}", hero.AliasName, hero.CanFly, hero.Age);
+            //}
+
+            //List<SuperHero> list = new List<SuperHero>();
+            //list.Add(new SuperHero { AliasName = "Superman", CanFly = false, Age = 23 });
+            //list.Add(new SuperHero { AliasName = "Batman", CanFly = true, Age = 11 });
+            //list.Add(new SuperHero { AliasName = "X-Man", CanFly = true, Age = 81 });
+            //list.Add(new SuperHero { AliasName = "Wolverine", CanFly = false, Age = 4 });
+            //list.Sort();
+
+            //foreach (SuperHero hero in list)
+            //{
+            //    Console.WriteLine("Super Hero Name = {0}, Can Fly = {1}, Age = {2}", hero.AliasName, hero.CanFly, hero.Age);
+            //}
+
+            //list.Sort(new SortByAge());
+            //Console.WriteLine("\n");
+
+            //foreach (SuperHero hero in list)
+            //{
+            //    Console.WriteLine("Super Hero Name = {0}, Can Fly = {1}, Age = {2}", hero.AliasName, hero.CanFly, hero.Age);
+            //}
+
+            //list.Sort(new SortByName());
+            //Console.WriteLine("\n");
+
+            //foreach (SuperHero hero in list)
+            //{
+            //    Console.WriteLine("Super Hero Name = {0}, Can Fly = {1}, Age = {2}", hero.AliasName, hero.CanFly, hero.Age);
+            //}
+
+            // Test for equality.
+            SuperHero hero1 = new SuperHero { AliasName = "Bob", Age = 40, CanFly = true };
+            SuperHero hero2 = new SuperHero { AliasName = "Terry", Age = 10, CanFly = false };
+            SuperHero hero3 = new SuperHero { AliasName = "Bob", Age = 40, CanFly = true };
+
+            Console.WriteLine(hero1 == hero2);
+            Console.WriteLine(hero1 == hero3);
+
+            //MyList<SuperHero> myList = new MyList<SuperHero>();
+            //myList.Add(new SuperHero { AliasName = "Superman", CanFly = false });
+            //myList.Add(new SuperHero { AliasName = "Batman", CanFly = true });
+            //myList.Add(new SuperHero { AliasName = "X-Man", CanFly = true });
+            //myList.Add(new SuperHero { AliasName = "Wolverine", CanFly = false });
+
+            //Console.WriteLine("\n");
+
+            //foreach (var hero in myList)
+            //{
+            //    Console.WriteLine("Super Hero = {0}", hero.AliasName);
+            //}
+
+            //People peeps = new People(3);
+            //peeps.Add(new SuperHero { AliasName = "Superman", CanFly = true });
+            //peeps.Add(new SuperHero { AliasName = "Batman", CanFly = true });
+            //peeps.Add(new SuperHero { AliasName = "X-Man", CanFly = false });
+
+            //Console.WriteLine("\n");
+
+            //foreach (var obj in peeps)
+            //{
+            //    SuperHero superHero = (SuperHero)obj;
+            //    Console.WriteLine("Super Hero in custom coll = {0}", superHero.AliasName);
+            //}
 
             Console.ReadKey();
         }

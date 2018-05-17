@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace TestInheritance
 {
-    internal class Dog : Animal
-    {
-        public Dog(int legs, string diet)
-        {
+    //internal class Dog : Animal
+    //{
+    //    //public Dog(int legs, string diet)
+    //    //{
             
-        }
-    }
+    //    //}
+    //}
 }

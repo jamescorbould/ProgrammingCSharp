@@ -24,6 +24,7 @@ namespace Indexers
     class Temperature
     {
         private float[] weekTemp = { 47.5F, 40.0F, 52.5F, 45.5F, 48.0F, 38.0F, 35.7F };
+        private string[] weekTemp2 = { "bob" };
 
         // Define an indexer property that encapsulates the float array and allows the array to be accessed safely.
         public float this[int index]
@@ -57,9 +58,9 @@ namespace Indexers
     {
         static void Main()
         {
-            var stringCollection = new SampleCollection<string>();
-            stringCollection[0] = "Hello, World";
-            Console.WriteLine(stringCollection[0]);
+            //var stringCollection = new SampleCollection<string>();
+            //stringCollection[0] = "Hello, World";
+            //Console.WriteLine(stringCollection[0]);
 
             Temperature temps = new Temperature();
             temps[6] = 30.0F;
