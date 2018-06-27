@@ -10,6 +10,13 @@ namespace TestInheritance
     {
         static void Main(string[] args)
         {
+            Animal animal = new Animal(4, "Biscuits");
+            Console.WriteLine(animal.ToString());
+
+            Animal animal2 = new Animal(null, "Meat");
+            Console.WriteLine(animal2.ToString());
+
+            Console.ReadKey();
         }
     }
 }

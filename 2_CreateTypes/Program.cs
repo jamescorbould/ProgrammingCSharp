@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace _2_CreateTypes
 {
@@ -311,12 +312,12 @@ namespace _2_CreateTypes
             //}
 
             // Test for equality.
-            SuperHero hero1 = new SuperHero { AliasName = "Bob", Age = 40, CanFly = true };
-            SuperHero hero2 = new SuperHero { AliasName = "Terry", Age = 10, CanFly = false };
-            SuperHero hero3 = new SuperHero { AliasName = "Bob", Age = 40, CanFly = true };
+            //SuperHero hero1 = new SuperHero { AliasName = "Bob", Age = 40, CanFly = true };
+            //SuperHero hero2 = new SuperHero { AliasName = "Terry", Age = 10, CanFly = false };
+            //SuperHero hero3 = new SuperHero { AliasName = "Bob", Age = 40, CanFly = true };
 
-            Console.WriteLine(hero1 == hero2);
-            Console.WriteLine(hero1 == hero3);
+            //Console.WriteLine(hero1 == hero2);
+            //Console.WriteLine(hero1 == hero3);
 
             //MyList<SuperHero> myList = new MyList<SuperHero>();
             //myList.Add(new SuperHero { AliasName = "Superman", CanFly = false });
@@ -343,6 +344,27 @@ namespace _2_CreateTypes
             //    SuperHero superHero = (SuperHero)obj;
             //    Console.WriteLine("Super Hero in custom coll = {0}", superHero.AliasName);
             //}
+
+            // Append to a string.
+            // The CLR will create a new string each time and assign the string pointer to the new string on the heap.
+            // Since strings are immutable.
+            // Therefore it is inefficient to modify and work with strings in this way, using System.String.
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
+            string mystring = "test";
+
+            for (int i = 1; i < 100000; i++)
+            {
+                mystring += i;
+            }
+            
+            //Stop Recording time
+            watch.Stop();
+
+            float miliToSec = watch.ElapsedMilliseconds / 1000;
+
+            Console.WriteLine("Total time: {0}s", miliToSec);
 
             Console.ReadKey();
         }
