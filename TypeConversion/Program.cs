@@ -23,6 +23,13 @@ namespace TypeConversion
             Console.WriteLine("Fahrenheit temp = {0}", ft.Temperature);
             CelsiusTemperature ct = ft; // Convert fahrenheit to celsius implicitly.
             Console.WriteLine("Celsius temp = {0}", ct.Temperature);
+
+            double d = 34.5;
+            object o = d;
+
+            int i = (int)(double)o;
+            Console.WriteLine("i = {0}", i);
+
             Console.ReadKey();
         }
     }

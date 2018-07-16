@@ -349,22 +349,43 @@ namespace _2_CreateTypes
             // The CLR will create a new string each time and assign the string pointer to the new string on the heap.
             // Since strings are immutable.
             // Therefore it is inefficient to modify and work with strings in this way, using System.String.
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
+            //Stopwatch watch = new Stopwatch();
+            //watch.Start();
 
-            string mystring = "test";
+            //string mystring = "test";
 
-            for (int i = 1; i < 100000; i++)
+            //for (int i = 1; i < 100000; i++)
+            //{
+            //    mystring += i;
+            //}
+
+            ////Stop Recording time
+            //watch.Stop();
+
+            //float miliToSec = watch.ElapsedMilliseconds / 1000;
+
+            //Console.WriteLine("Total time: {0}s", miliToSec);
+
+            //Console.ReadKey();
+
+            StringTest.TestStringFormat();
+            StringTest.TestStringFormatting();
+
+            int acctNumber = 79203159;
+
+            Console.WriteLine(String.Format(new CustomerFormatter(), "{0}", acctNumber));
+            Console.WriteLine(String.Format(new CustomerFormatter(), "{0:G}", acctNumber));
+            Console.WriteLine(String.Format(new CustomerFormatter(), "{0:S}", acctNumber));
+            Console.WriteLine(String.Format(new CustomerFormatter(), "{0:P}", acctNumber));
+
+            try
             {
-                mystring += i;
+                Console.WriteLine(String.Format(new CustomerFormatter(), "{0:X}", acctNumber));
             }
-            
-            //Stop Recording time
-            watch.Stop();
-
-            float miliToSec = watch.ElapsedMilliseconds / 1000;
-
-            Console.WriteLine("Total time: {0}s", miliToSec);
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             Console.ReadKey();
         }

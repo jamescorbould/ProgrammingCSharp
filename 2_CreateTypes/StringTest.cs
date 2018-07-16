@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace _2_CreateTypes
 {
-    class StringTest
+    static class StringTest
     {
         // Format method has this syntax: {index[,alignment][:formatString]}.
-        public void TestStringFormat()
+        public static void TestStringFormat()
         {
             // Create array of 5-tuples with population data for three U.S. cities, 1940-1950.
             Tuple<string, DateTime, int, DateTime, int>[] cities =
@@ -32,6 +32,86 @@ namespace _2_CreateTypes
                                        city.Item1, city.Item2, city.Item3, city.Item4, city.Item5,
                                        (city.Item5 - city.Item3) / (double)city.Item3);
                 Console.WriteLine(output);
+            }
+        }
+
+        public static void TestStringFormatting()
+        {
+            Decimal pricePerOunce = 17.36m;
+            Decimal pricePerKilo = 22.34m;
+
+            String s = String.Format("\nThe current price is {0:C2} per ounce.", pricePerOunce);
+            Console.WriteLine(s);
+
+            s = String.Format("The current price is {0:c4} per ounce.", pricePerOunce);
+            Console.WriteLine(s);
+
+            // Check if specify one number after the decimal place, that the value is rounded up/down.
+            s = String.Format("The current price is {0:c1} per ounce.", pricePerOunce);
+            Console.WriteLine(s);
+
+            s = String.Format("The current price is {0:c1} per kilo.", pricePerKilo);
+            Console.WriteLine(s);
+
+            // Left align.
+            // Create 2 arrays showing cities and population and display as a formatted table.
+
+        }
+    }
+    
+    // Define a custom string formatter.
+    public class CustomerFormatter : IFormatProvider, ICustomFormatter
+    {
+        public object GetFormat(Type formatType)
+        {
+            if (formatType == typeof(ICustomFormatter))
+            {
+                return this;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public string Format(string format, object arg, IFormatProvider formatProvider)
+        {
+            if (!this.Equals(formatProvider))
+            {
+                return null;
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(format))
+                {
+                    format = "G";
+                }
+
+                string customerString = arg.ToString();
+                if (customerString.Length < 8)
+                {
+                    customerString = customerString.PadLeft(8, '0');
+                }
+
+                format = format.ToUpper();
+                switch (format)
+                {
+                    case "G":
+                        return customerString.Substring(0, 1) + "-" +
+                                              customerString.Substring(1, 5) + "-" +
+                                              customerString.Substring(6);
+                    case "S":
+                        return customerString.Substring(0, 1) + "/" +
+                                              customerString.Substring(1, 5) + "/" +
+                                              customerString.Substring(6);
+                    case "P":
+                        return customerString.Substring(0, 1) + "." +
+                                              customerString.Substring(1, 5) + "." +
+                                              customerString.Substring(6);
+                    default:
+                        throw new FormatException(
+                                  String.Format("The '{0}' format specifier is not supported.", format));
+                }
             }
         }
     }

@@ -28,7 +28,7 @@ namespace TestInheritance
 
         public override string ToString()
         {
-            //int localLegs = String.Format("Animal, Legs = {0}, Diet = {1}", (Legs == 8 ? (Legs == 7 ? Legs ?? 7 : 8) : 9), Diet);
+            return String.Format("Animal, Legs = {0}, Diet = {1}", (Legs == 8 ? (Legs == 7 ? Legs ?? 7 : 8) : 9), Diet);
         }
     }
 }
