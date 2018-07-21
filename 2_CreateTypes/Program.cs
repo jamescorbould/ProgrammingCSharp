@@ -368,24 +368,32 @@ namespace _2_CreateTypes
 
             //Console.ReadKey();
 
-            StringTest.TestStringFormat();
-            StringTest.TestStringFormatting();
+            //StringTest.TestStringFormat();
+            //StringTest.TestStringFormatting();
 
-            int acctNumber = 79203159;
+            //int acctNumber = 79203159;
 
-            Console.WriteLine(String.Format(new CustomerFormatter(), "{0}", acctNumber));
-            Console.WriteLine(String.Format(new CustomerFormatter(), "{0:G}", acctNumber));
-            Console.WriteLine(String.Format(new CustomerFormatter(), "{0:S}", acctNumber));
-            Console.WriteLine(String.Format(new CustomerFormatter(), "{0:P}", acctNumber));
+            //Console.WriteLine(String.Format(new CustomerFormatter(), "{0}", acctNumber));
+            //Console.WriteLine(String.Format(new CustomerFormatter(), "{0:G}", acctNumber));
+            //Console.WriteLine(String.Format(new CustomerFormatter(), "{0:S}", acctNumber));
+            //Console.WriteLine(String.Format(new CustomerFormatter(), "{0:P}", acctNumber));
 
-            try
-            {
-                Console.WriteLine(String.Format(new CustomerFormatter(), "{0:X}", acctNumber));
-            }
-            catch (FormatException e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            //try
+            //{
+            //    Console.WriteLine(String.Format(new CustomerFormatter(), "{0:X}", acctNumber));
+            //}
+            //catch (FormatException e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
+
+            //DelegateTest.test("Ben", "Lockie");
+            //DelegateTest.testActionDelegate();
+            //DelegateTest.testGenericActionDelegate();
+            //DelegateTest.testFunc();
+
+            DelegateTest.testPredicate();
+
 
             Console.ReadKey();
         }

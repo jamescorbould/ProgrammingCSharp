@@ -55,7 +55,21 @@ namespace _2_CreateTypes
 
             // Left align.
             // Create 2 arrays showing cities and population and display as a formatted table.
+            Dictionary<string, int> cities = new Dictionary<string, int>()
+            {
+                { "Auckland", 1000000 },
+                { "Wellington", 500000 },
+                { "Christchurch", 500000 }
+            };
 
+            Console.WriteLine("\n{0,-16} {1,12}", "City", "Population");
+
+            foreach (KeyValuePair<string, int> kv in cities)
+            {
+                Console.WriteLine("{0,-16} {1,12:N0}", kv.Key, kv.Value);
+            }
+
+            Console.WriteLine("\n");
         }
     }
     
