@@ -17,5 +17,7 @@ namespace _2_CreateTypes
         {
             this.Title = title;
         }
+
+
     }
 }

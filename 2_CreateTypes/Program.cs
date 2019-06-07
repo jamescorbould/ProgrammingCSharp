@@ -10,6 +10,11 @@ namespace _2_CreateTypes
 {
     class Program
     {
+        static void Alarm(int temp)
+        {
+            Console.WriteLine("Turn On AC, Its hot. Room temp is {0}", temp);
+        }
+
         static void Main(string[] args)
         {
             //Calculator calc = new Calculator();
@@ -392,8 +397,17 @@ namespace _2_CreateTypes
             //DelegateTest.testGenericActionDelegate();
             //DelegateTest.testFunc();
 
-            DelegateTest.testPredicate();
-
+            //DelegateTest.testPredicate();
+            
+            Room room = new Room();
+            room.OnHeatAlert = Alarm;
+            //OnHeatAlert will be called
+            room.Temperature = 90;
+            room.Temperature = 15;
+            //OnHeatAlert will be called
+            //Which shouldn't be called becaust room is not hot
+            room.OnHeatAlert(room.Temperature);
+            //Delegate is called outside the Room class
 
             Console.ReadKey();
         }
